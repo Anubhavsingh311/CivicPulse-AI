@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help & Docs — CivicPulse Resident</title>
+  <meta name="description" content="Resident guidance on civic complaint workflows and SLA response times." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="user-sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon-sm">CP</div>
+        <div class="sidebar-logo-text">
+          <div class="sidebar-brand">CivicPulse</div>
+          <div class="sidebar-role">Resident Portal</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <div class="nav-group-label">RESIDENT SERVICES</div>
+          <a href="user-request.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            <span>Raise a Request</span>
+          </a>
+          <a href="user-my-requests.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>My Requests</span>
+          </a>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-label">SUPPORT</div>
+          <a href="user-help.html" class="nav-item active">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Help & Docs</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-status">
+          <span class="status-dot"></span>
+          <span class="status-text">Portal active</span>
+        </div>
+        <div class="sidebar-user">
+          <div class="user-avatar" id="user-avatar-initials">RU</div>
+          <div class="user-info">
+            <div class="user-name" id="user-display-name">Resident User</div>
+            <div class="user-role">Resident Account</div>
+          </div>
+          <button class="logout-btn" title="Sign out" onclick="doSignOut()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Section -->
+    <div class="app-main">
+      <header class="topnav">
+        <button class="sidebar-toggle" title="Toggle Sidebar">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topnav-title">
+          <h1 class="page-title">Help & Documentation</h1>
+          <p class="page-subtitle">Guidance on municipal ticket lifecycles, SLAs, and emergency procedures.</p>
+        </div>
+        <div class="topnav-actions">
+          <div class="date-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4F7568" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span class="mono">18 Sep 2026</span>
+          </div>
+          <div class="user-avatar-sm" onclick="doSignOut()" title="Click to sign out">RU</div>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <div style="max-width: 860px; margin: 0 auto; padding: 24px;">
+          <h2 class="section-title">Municipal Ticket Guidance</h2>
+          <p class="section-subtitle">How your report moves from intake to verification</p>
+
+          <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 20px;">
+            <div class="card" style="padding: 22px;">
+              <div style="font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+                1. Automated Semantic Clustering
+              </div>
+              <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                CivicPulse groups co-located complaints (e.g. repeated reports of water outage in Sector 12). When a cluster reaches critical density, the incident is flagged on the city operations command dashboard as an emerging emergency, ensuring expedited triage.
+              </p>
+            </div>
+
+            <div class="card" style="padding: 22px;">
+              <div style="font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+                2. Status Pipeline Definitions
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px;">
+                <div style="background: var(--bg-card2); padding: 12px; border-radius: 6px; border: 1px solid var(--border);">
+                  <span class="status-badge badge-open"><span class="badge-dot" style="background:currentColor"></span>Open</span>
+                  <p style="font-size: 12px; color: var(--text-secondary); margin-top: 6px; line-height: 1.4;">Logged in the database. Awaiting initial inspector assignment.</p>
+                </div>
+                <div style="background: var(--bg-card2); padding: 12px; border-radius: 6px; border: 1px solid var(--border);">
+                  <span class="status-badge badge-inprogress"><span class="badge-dot" style="background:currentColor"></span>In Progress</span>
+                  <p style="font-size: 12px; color: var(--text-secondary); margin-top: 6px; line-height: 1.4;">Maintenance or sanitation crew assigned and on site.</p>
+                </div>
+                <div style="background: var(--bg-card2); padding: 12px; border-radius: 6px; border: 1px solid var(--border);">
+                  <span class="status-badge badge-resolved"><span class="badge-dot" style="background:currentColor"></span>Resolved</span>
+                  <p style="font-size: 12px; color: var(--text-secondary); margin-top: 6px; line-height: 1.4;">Work completed and signed off by municipal inspector.</p>
+                </div>
+                <div style="background: var(--bg-card2); padding: 12px; border-radius: 6px; border: 1px solid var(--border);">
+                  <span class="status-badge badge-escalated"><span class="badge-dot" style="background:currentColor"></span>Escalated</span>
+                  <p style="font-size: 12px; color: var(--text-secondary); margin-top: 6px; line-height: 1.4;">Requires inter-departmental budget approval or structural rebuild.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="padding: 22px;">
+              <div style="font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+                3. Service Level Agendas (SLAs)
+              </div>
+              <ul style="padding-left: 20px; font-size: 13px; color: var(--text-secondary); line-height: 1.8;">
+                <li><strong>Street Lighting:</strong> 24–48 hours for bulb replacement or fuse fixes.</li>
+                <li><strong>Waste Collection:</strong> 24 hours for missed pickups or bin clearance.</li>
+                <li><strong>Potholes & Road Damage:</strong> 48–72 hours for temporary cold-mix patch.</li>
+                <li><strong>Water Contamination / Leaks:</strong> Priority response within 6–12 hours.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    initShell('user');
+  </script>
+</body>
+</html>

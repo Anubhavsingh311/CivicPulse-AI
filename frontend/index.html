@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivicPulse — Civic Intelligence Platform</title>
+  <meta name="description" content="CivicPulse: Monitor complaint activity, emerging incidents and operational patterns for smarter civic governance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="auth-screen" class="auth-screen">
+    <div class="auth-page active">
+      <div class="auth-container">
+        <div class="auth-card glass-card">
+          <div class="auth-logo">
+            <div class="logo-icon">CP</div>
+            <div>
+              <div class="logo-name">CivicPulse</div>
+              <div class="logo-tagline">Civic Intelligence Platform</div>
+            </div>
+          </div>
+
+          <div class="auth-header">
+            <h1 class="auth-title">Welcome back</h1>
+            <p class="auth-subtitle">Sign in to your account to continue</p>
+          </div>
+
+          <div id="login-error" class="alert alert-error hidden">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span id="login-error-text">Invalid credentials. Please try again.</span>
+          </div>
+
+          <div id="registered-banner" class="alert alert-success hidden">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Account created! Please enter your password to sign in.
+          </div>
+
+          <form id="login-form" class="auth-form" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="login-email">Email address</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                <input type="email" id="login-email" class="form-input" placeholder="your@email.com" autocomplete="email" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="login-password">Password</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input type="password" id="login-password" class="form-input" placeholder="Enter your password" autocomplete="current-password" required />
+              </div>
+            </div>
+
+            <!-- Demo hints: Clickable to auto-fill -->
+            <div class="login-hint-box">
+              <div class="hint-row" id="hint-user" title="Click to fill resident credentials">
+                <span class="hint-label">Resident login:</span>
+                <span class="hint-val">user@civic.com / user123</span>
+              </div>
+              <div class="hint-row" id="hint-admin" title="Click to fill operations admin credentials">
+                <span class="hint-label">Admin login:</span>
+                <span class="hint-val">admin@civic.com / admin123</span>
+              </div>
+            </div>
+
+            <button type="submit" id="login-btn" class="btn btn-primary btn-full">
+              <span>Sign in</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+          </form>
+
+          <div class="auth-divider"><span>or</span></div>
+          <p class="auth-switch">
+            Don't have an account?
+            <a href="register.html" id="go-register" class="link-btn">Create account</a>
+          </p>
+        </div>
+
+        <div class="auth-visual signin-hero-side">
+          <div class="signin-brand-header">
+            <div class="signin-brand-icon">CP</div>
+            <div class="signin-brand-text">
+              <div class="signin-brand-title">CIVICPULSE AI</div>
+              <div class="signin-brand-subtitle">CIVIC INTELLIGENCE PLATFORM</div>
+            </div>
+          </div>
+
+          <div class="signin-hero-body">
+            <h1 class="signin-hero-title">
+              Civic complaints,<br>
+              turned into<br>
+              operational intelligence.
+            </h1>
+            <p class="signin-hero-desc">
+              CivicPulse AI detects emerging civic issues in real time — from pothole clusters to water supply failures — so operations teams can act before problems escalate.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    // Check URL parameters (e.g. from registration)
+    const urlParams = new URLSearchParams(window.location.search);
+    const registeredEmail = urlParams.get('registered');
+    if (registeredEmail) {
+      document.getElementById('login-email').value = registeredEmail;
+      document.getElementById('registered-banner').classList.remove('hidden');
+      document.getElementById('login-password').focus();
+    }
+
+    // Auto-fill hints click handlers
+    document.getElementById('hint-user').addEventListener('click', () => {
+      document.getElementById('login-email').value = 'user@civic.com';
+      document.getElementById('login-password').value = 'user123';
+      document.getElementById('login-error').classList.add('hidden');
+    });
+    document.getElementById('hint-admin').addEventListener('click', () => {
+      document.getElementById('login-email').value = 'admin@civic.com';
+      document.getElementById('login-password').value = 'admin123';
+      document.getElementById('login-error').classList.add('hidden');
+    });
+
+    // Login submit logic
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim().toLowerCase();
+      const password = document.getElementById('login-password').value.trim();
+      const errorEl = document.getElementById('login-error');
+      const errorText = document.getElementById('login-error-text');
+
+      if (!email || !password) {
+        errorText.textContent = 'Please enter both email and password.';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+
+      const users = getUsers();
+      const user = users.find(u => u.email.toLowerCase() === email && u.password === password);
+
+      if (user) {
+        errorEl.classList.add('hidden');
+        localStorage.setItem('civicpulse_session', JSON.stringify(user));
+
+        if (user.role === 'admin') {
+          window.location.href = 'admin-command.html';
+        } else {
+          window.location.href = 'user-request.html';
+        }
+      } else {
+        errorText.textContent = 'Invalid email or password. Please try again.';
+        errorEl.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

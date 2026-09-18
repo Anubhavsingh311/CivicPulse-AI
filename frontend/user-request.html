@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raise a Request — CivicPulse Resident</title>
+  <meta name="description" content="Raise a civic maintenance ticket with the municipality." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="user-sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon-sm">CP</div>
+        <div class="sidebar-logo-text">
+          <div class="sidebar-brand">CivicPulse</div>
+          <div class="sidebar-role">Resident Portal</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <div class="nav-group-label">RESIDENT SERVICES</div>
+          <a href="user-request.html" class="nav-item active">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            <span>Raise a Request</span>
+          </a>
+          <a href="user-my-requests.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>My Requests</span>
+          </a>
+        </div>
+        <div class="nav-group">
+          <div class="nav-group-label">SUPPORT</div>
+          <a href="user-help.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Help & Docs</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-status">
+          <span class="status-dot"></span>
+          <span class="status-text">Portal active</span>
+        </div>
+        <div class="sidebar-user">
+          <div class="user-avatar" id="user-avatar-initials">RU</div>
+          <div class="user-info">
+            <div class="user-name" id="user-display-name">Resident User</div>
+            <div class="user-role">Resident Account</div>
+          </div>
+          <button class="logout-btn" title="Sign out" onclick="doSignOut()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Section -->
+    <div class="app-main">
+      <header class="topnav">
+        <button class="sidebar-toggle" title="Toggle Sidebar">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topnav-title">
+          <h1 class="page-title">Resident Request Desk</h1>
+          <p class="page-subtitle">Raise a civic request and follow its progress from submission to resolution.</p>
+        </div>
+        <div class="topnav-actions">
+          <div class="date-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4F7568" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span class="mono">18 Sep 2026</span>
+          </div>
+          <div class="user-avatar-sm" onclick="doSignOut()" title="Click to sign out">RU</div>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <div style="max-width: 1060px; margin: 0 auto; padding: 24px;">
+          <div class="request-grid">
+            <!-- Form Card -->
+            <div class="card" style="padding: 24px;">
+              <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 6px;">
+                CIVIC REQUEST INTAKE
+              </div>
+              <h2 style="font-size: 22px; font-weight: 800; color: var(--text-primary); margin-bottom: 6px; letter-spacing: -0.01em;">
+                Tell us what needs attention.
+              </h2>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 22px; line-height: 1.5;">
+                Your request is sent to the relevant city operations team for field dispatch.
+              </p>
+
+              <form id="resident-req-form" style="display: flex; flex-direction: column; gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label" for="req-category">Complaint category</label>
+                  <select id="req-category" class="field-style" required>
+                    <!-- Populated via script or options -->
+                  </select>
+                </div>
+
+                <div class="form-group" id="req-other-wrap" style="display:none;">
+                  <label class="form-label" for="req-other-desc">Describe category</label>
+                  <input type="text" id="req-other-desc" class="field-style" placeholder="e.g. Stray animal concern" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="req-location">Location / Landmark</label>
+                  <input type="text" id="req-location" class="field-style" placeholder="Street, building, landmark, or locality" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="req-desc">What is happening?</label>
+                  <textarea id="req-desc" class="field-style" rows="5" placeholder="Add a short description to help the operations team assess and locate the issue." required></textarea>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 6px;">
+                  <span style="font-size: 11px; color: var(--text-muted);">You'll receive a tracking ID immediately.</span>
+                  <button type="submit" class="btn btn-primary">
+                    <span>Raise request</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Aside Advice -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div id="req-confirmation-slot"></div>
+
+              <div class="card" style="padding: 18px; border-left: 3px solid var(--accent2);">
+                <div style="font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">
+                  Clear details move faster
+                </div>
+                <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.5; margin: 0;">
+                  Include landmarks, gate numbers, or nearby shops so municipal engineers can pinpoint the issue immediately.
+                </p>
+              </div>
+
+              <div style="background: var(--sidebar-bg); border-radius: var(--radius); padding: 18px; color: var(--text-sidebar);">
+                <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--accent3); text-transform: uppercase; margin-bottom: 6px;">
+                  URGENT DANGER?
+                </div>
+                <div style="font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px;">
+                  Call emergency services first.
+                </div>
+                <p style="font-size: 12px; color: rgba(200,216,204,0.8); line-height: 1.5; margin: 0;">
+                  This desk is for routine municipal maintenance. For high-voltage wire breaks, open gas lines, or immediate road collapse risks, dial 112 directly.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- My Recent Requests Table -->
+          <div class="card" style="margin-top: 24px; overflow: hidden;">
+            <div style="padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 14px; font-weight: 700; color: var(--text-primary);">My raised requests</div>
+                <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">Follow the status of each complaint from submission to resolution.</div>
+              </div>
+              <span class="mono" id="req-total-count" style="font-size: 11px; font-weight: 600; color: var(--accent2);">0 TOTAL</span>
+            </div>
+
+            <div id="user-requests-list"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    const user = initShell('user');
+
+    // Populate category dropdown
+    const catSelect = document.getElementById('req-category');
+    catSelect.innerHTML = CATEGORIES.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+
+    // Pre-fill location if known
+    if (user.ward) {
+      document.getElementById('req-location').value = user.ward;
+    }
+
+    // Toggle other category
+    catSelect.addEventListener('change', () => {
+      document.getElementById('req-other-wrap').style.display = (catSelect.value.toLowerCase() === 'other') ? 'block' : 'none';
+    });
+
+    function renderList() {
+      const all = getUserRequests();
+      const my = all.filter(r => !r.userEmail || r.userEmail === user.email);
+      document.getElementById('req-total-count').textContent = `${my.length} TOTAL`;
+
+      const listEl = document.getElementById('user-requests-list');
+      if (my.length === 0) {
+        listEl.innerHTML = `<div style="padding: 40px; text-align: center; color: var(--text-muted); font-size: 13px;">No requests logged yet. Use the form above to raise your first issue.</div>`;
+        return;
+      }
+
+      listEl.innerHTML = my.map(r => `
+        <div style="display: grid; grid-template-columns: 110px 1.2fr 1fr 110px; gap: 16px; padding: 14px 20px; align-items: center; border-bottom: 1px solid var(--border2);">
+          <div class="mono" style="font-size: 12px; font-weight: 600; color: var(--accent2);">${escapeHtml(r.id)}</div>
+          <div>
+            <div style="font-size: 13px; font-weight: 600; color: var(--text-primary);">${escapeHtml(r.category)}</div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Raised ${escapeHtml(r.raisedAt)}</div>
+          </div>
+          <div style="font-size: 12px; color: var(--text-secondary);">${escapeHtml(r.location)}</div>
+          <div>${renderStatusBadge(r.status)}</div>
+        </div>
+      `).join('');
+    }
+
+    renderList();
+
+    // Form submit
+    document.getElementById('resident-req-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const cat = catSelect.value;
+      const loc = document.getElementById('req-location').value.trim();
+      const desc = document.getElementById('req-desc').value.trim();
+
+      if (!loc || !desc) return;
+
+      const newId = 'CP-' + Math.floor(2700 + Math.random() * 900);
+      const newReq = {
+        id: newId,
+        category: cat,
+        location: loc,
+        desc: desc,
+        raisedAt: '18 Sep 2026',
+        status: 'Open',
+        userEmail: user.email
+      };
+
+      const updated = [newReq, ...getUserRequests()];
+      saveUserRequests(updated);
+
+      document.getElementById('req-confirmation-slot').innerHTML = `
+        <div style="background: #EAF1EC; border: 1px solid #B6CCBC; border-radius: var(--radius); padding: 18px; animation: fadeSlideUp 0.3s ease;">
+          <div style="color: #5E806B; font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">
+            REQUEST LOGGED
+          </div>
+          <div style="color: var(--text-primary); font-size: 16px; font-weight: 700; margin: 6px 0 4px;">
+            Tracking ID: <span class="mono" style="color: var(--accent);">${newId}</span>
+          </div>
+          <div style="color: #4A5B53; font-size: 12px; line-height: 1.5;">
+            Your report for <strong>${escapeHtml(loc)}</strong> is queued for inspection by ward teams.
+          </div>
+        </div>
+      `;
+
+      document.getElementById('req-desc').value = '';
+      renderList();
+    });
+  </script>
+</body>
+</html>

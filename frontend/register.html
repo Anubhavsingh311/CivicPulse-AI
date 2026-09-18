@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — CivicPulse</title>
+  <meta name="description" content="Register for CivicPulse resident portal to raise and track civic requests." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="auth-screen">
+    <div class="auth-page active">
+      <div class="auth-container">
+        <div class="auth-card glass-card">
+          <div class="auth-logo">
+            <div class="logo-icon">CP</div>
+            <div>
+              <div class="logo-name">CivicPulse</div>
+              <div class="logo-tagline">Civic Intelligence Platform</div>
+            </div>
+          </div>
+
+          <div class="auth-header">
+            <h1 class="auth-title">Create account</h1>
+            <p class="auth-subtitle">Join the civic intelligence network as a resident</p>
+          </div>
+
+          <div id="register-success" class="alert alert-success hidden">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Account created! Redirecting to sign in…
+          </div>
+          <div id="register-error" class="alert alert-error hidden">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span id="register-error-msg">Please fill all fields correctly.</span>
+          </div>
+
+          <form id="register-form" class="auth-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="reg-fname">First name</label>
+                <input type="text" id="reg-fname" class="form-input" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-lname">Last name</label>
+                <input type="text" id="reg-lname" class="form-input" placeholder="Smith" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-email">Email address</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                <input type="email" id="reg-email" class="form-input" placeholder="your@email.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-ward">Ward / Locality</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <input type="text" id="reg-ward" class="form-input" placeholder="e.g. Sector 12, Ward 7" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-password">Password</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input type="password" id="reg-password" class="form-input" placeholder="Minimum 6 characters" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-confirm">Confirm password</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input type="password" id="reg-confirm" class="form-input" placeholder="Re-enter password" required />
+              </div>
+            </div>
+
+            <button type="submit" id="register-btn" class="btn btn-primary btn-full">
+              <span>Create account</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+          </form>
+
+          <div class="auth-divider"><span>or</span></div>
+          <p class="auth-switch">
+            Already have an account?
+            <a href="index.html" class="link-btn">Sign in</a>
+          </p>
+        </div>
+
+        <div class="auth-visual">
+          <div class="visual-info">
+            <div class="vinfo-icon">🏙️</div>
+            <div class="vinfo-title">Resident Portal</div>
+            <div class="vinfo-desc">Create your resident account to raise civic requests, monitor infrastructure in your area, and track ticket resolutions.</div>
+          </div>
+          <div class="visual-steps">
+            <div class="vstep">
+              <div class="vstep-num">1</div>
+              <div><div class="vstep-title">Register</div><div class="vstep-desc">Create your resident profile with your locality</div></div>
+            </div>
+            <div class="vstep">
+              <div class="vstep-num">2</div>
+              <div><div class="vstep-title">Raise a Request</div><div class="vstep-desc">Submit issues with photos, descriptions & landmarks</div></div>
+            </div>
+            <div class="vstep">
+              <div class="vstep-num">3</div>
+              <div><div class="vstep-title">Track Live Progress</div><div class="vstep-desc">Follow field inspection and resolution in real time</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    document.getElementById('register-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fname = document.getElementById('reg-fname').value.trim();
+      const lname = document.getElementById('reg-lname').value.trim();
+      const email = document.getElementById('reg-email').value.trim().toLowerCase();
+      const ward = document.getElementById('reg-ward').value.trim();
+      const password = document.getElementById('reg-password').value;
+      const confirm = document.getElementById('reg-confirm').value;
+      const errorEl = document.getElementById('register-error');
+      const errorMsg = document.getElementById('register-error-msg');
+      const successEl = document.getElementById('register-success');
+
+      if (!fname || !email || !password || !confirm) {
+        errorMsg.textContent = 'Please fill in all required fields.';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+      if (!email.includes('@') || !email.includes('.')) {
+        errorMsg.textContent = 'Please provide a valid email address.';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+      if (password.length < 6) {
+        errorMsg.textContent = 'Password must be at least 6 characters long.';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+      if (password !== confirm) {
+        errorMsg.textContent = 'Passwords do not match.';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+
+      const users = getUsers();
+      if (users.some(u => u.email.toLowerCase() === email)) {
+        errorMsg.textContent = 'An account with this email already exists.';
+        errorEl.classList.remove('hidden');
+        return;
+      }
+
+      const initials = ((fname[0] || '') + (lname[0] || fname[1] || '')).toUpperCase();
+      const newUser = {
+        email,
+        password,
+        role: 'user',
+        name: `${fname} ${lname}`.trim(),
+        initials,
+        ward: ward || 'Sector 12'
+      };
+
+      saveUsers([...users, newUser]);
+      errorEl.classList.add('hidden');
+      successEl.classList.remove('hidden');
+
+      setTimeout(() => {
+        window.location.href = `index.html?registered=${encodeURIComponent(email)}`;
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
