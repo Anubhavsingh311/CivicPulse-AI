@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request Desk & Triage — CivicPulse Admin</title>
+  <meta name="description" content="Municipal operations intake and ticket status dispatch." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+    <!-- Admin Sidebar -->
+    <aside class="sidebar sidebar-admin" id="admin-sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon-sm">CP</div>
+        <div class="sidebar-logo-text">
+          <div class="sidebar-brand">CivicPulse</div>
+          <div class="sidebar-role">Admin Panel</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <div class="nav-group-label">OVERVIEW</div>
+          <a href="admin-command.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            <span>Command Center</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">MONITOR</div>
+          <a href="admin-explorer.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Incident Explorer</span>
+          </a>
+          <a href="admin-emerging.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m10.29 3.86-8.07 13.97a1 1 0 0 0 .88 1.5h16.15a1 1 0 0 0 .88-1.5L11.71 3.86a1 1 0 0 0-1.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Emerging Issues</span>
+            <span class="nav-badge">7</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">REPORT</div>
+          <a href="admin-briefing.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Daily Briefing</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">RESIDENT SERVICES</div>
+          <a href="admin-requests.html" class="nav-item active">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            <span>Raise a Request</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-status">
+          <span class="status-dot"></span>
+          <span class="status-text">Analytics operational</span>
+        </div>
+        <div class="sidebar-data-coverage">
+          <div class="data-label">Data Coverage</div>
+          <div class="data-grid">
+            <div class="data-item"><div class="data-val">10 wks</div><div class="data-sub">data range</div></div>
+            <div class="data-item"><div class="data-val">12,482</div><div class="data-sub">complaints</div></div>
+            <div class="data-item"><div class="data-val">8</div><div class="data-sub">localities</div></div>
+            <div class="data-item"><div class="data-val">9</div><div class="data-sub">categories</div></div>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="user-avatar">AS</div>
+          <div class="user-info">
+            <div class="user-name">Amit Singh</div>
+            <div class="user-role">Operations Analyst</div>
+          </div>
+          <button class="logout-btn" title="Sign out" onclick="doSignOut()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="app-main">
+      <header class="topnav">
+        <button class="sidebar-toggle" title="Toggle Sidebar">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topnav-title">
+          <h1 class="page-title">Resident Request Desk (Admin View)</h1>
+          <p class="page-subtitle">Review, dispatch, and triage incoming resident complaints.</p>
+        </div>
+        <div class="topnav-actions">
+          <div class="date-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4F7568" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span class="mono">18 Sep 2026</span>
+          </div>
+          <div class="user-avatar-sm" onclick="doSignOut()" title="Click to sign out">AS</div>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <div style="padding: 24px; display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <h2 class="section-title">Operations Ticket Triage</h2>
+              <p class="section-subtitle">Real-time status management for all citizen-submitted requests</p>
+            </div>
+            <div class="mono" id="admin-total-counter" style="font-size: 12px; font-weight: 600; color: var(--accent2);">
+              0 Total Registered Tickets
+            </div>
+          </div>
+
+          <!-- Top: Staff Request Intake Form & Guidance -->
+          <div class="request-grid" style="margin-bottom: 8px;">
+            <div class="card" style="padding: 22px;">
+              <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px;">
+                STAFF TICKET INTAKE
+              </div>
+              <h3 style="font-size: 18px; font-weight: 800; color: var(--text-primary); margin-bottom: 6px;">Log an On-Site Observation</h3>
+              <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 16px;">Create a municipal ticket observed during field patrol or supervisor walkthrough.</p>
+
+              <form id="admin-ticket-form" style="display: flex; flex-direction: column; gap: 14px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                  <div class="form-group">
+                    <label class="form-label" for="adm-category">Category</label>
+                    <select id="adm-category" class="field-style" required></select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="adm-location">Location / Ward</label>
+                    <input type="text" id="adm-location" class="field-style" placeholder="e.g. Sector 12, Main Gate" required />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="adm-desc">Staff Description & Action Required</label>
+                  <textarea id="adm-desc" class="field-style" rows="3" placeholder="Specify equipment required, hazard severity, or work order instructions." required></textarea>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end;">
+                  <button type="submit" class="btn btn-primary">
+                    <span>Create Staff Ticket</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Staff Mode Notice -->
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="background: rgba(169,71,63,0.08); border: 1px solid rgba(169,71,63,0.25); border-radius: var(--radius); padding: 18px;">
+                <div style="font-size: 11px; font-weight: 700; color: var(--critical); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;">
+                  Staff Elevation Mode
+                </div>
+                <div style="font-size: 12px; color: var(--text-primary); line-height: 1.5;">
+                  You are logged in as <strong>Operations Staff</strong>. Tickets created here receive high-priority SLA tagging and appear immediately in field engineer dispatch queues.
+                </div>
+              </div>
+
+              <div class="card" style="padding: 16px;">
+                <div style="font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">Status Dispatch Policy</div>
+                <div style="font-size: 11px; color: var(--text-secondary); line-height: 1.5;">
+                  Changing a status in the table below automatically updates the citizen's mobile portal view and logs audit timestamps in the central telemetry ledger.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- All Tickets Management Table -->
+          <div class="card" style="overflow: hidden;">
+            <div style="padding: 16px 20px; border-bottom: 1px solid var(--border); font-size: 14px; font-weight: 700; color: var(--text-primary);">
+              All Citizen & Staff Submissions
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Ticket ID</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                    <th>Submitted By</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th style="text-align: right;">Update Dispatch</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-tickets-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    const user = initShell('admin');
+
+    const catSelect = document.getElementById('adm-category');
+    catSelect.innerHTML = CATEGORIES.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+
+    function renderAdminTable() {
+      const all = getUserRequests();
+      document.getElementById('admin-total-counter').textContent = `${all.length} Total Registered Tickets`;
+
+      const tbody = document.getElementById('admin-tickets-body');
+      tbody.innerHTML = all.map(r => `
+        <tr>
+          <td class="mono" style="font-weight: 700; color: var(--accent2);">${escapeHtml(r.id)}</td>
+          <td style="font-weight: 600;">${escapeHtml(r.category)}</td>
+          <td style="color: var(--text-secondary);">${escapeHtml(r.location)}</td>
+          <td style="max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-style: italic; color: var(--text-secondary);">
+            "${escapeHtml(r.desc || 'No additional note')}"
+          </td>
+          <td class="mono" style="font-size: 11px; color: var(--text-muted);">${escapeHtml(r.userEmail || 'Resident')}</td>
+          <td class="mono" style="font-size: 11px; color: var(--text-muted);">${escapeHtml(r.raisedAt)}</td>
+          <td>${renderStatusBadge(r.status)}</td>
+          <td style="text-align: right;">
+            <select class="filter-select" style="width: auto; font-size: 11px; padding: 4px 8px;" onchange="changeStatus('${r.id}', this.value)">
+              <option value="Open" ${r.status === 'Open' ? 'selected' : ''}>Open</option>
+              <option value="In Progress" ${r.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+              <option value="Resolved" ${r.status === 'Resolved' ? 'selected' : ''}>Resolved</option>
+              <option value="Escalated" ${r.status === 'Escalated' ? 'selected' : ''}>Escalated</option>
+            </select>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function changeStatus(id, newStatus) {
+      const all = getUserRequests();
+      const target = all.find(r => r.id === id);
+      if (target) {
+        target.status = newStatus;
+        saveUserRequests(all);
+        renderAdminTable();
+      }
+    }
+
+    document.getElementById('admin-ticket-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const cat = catSelect.value;
+      const loc = document.getElementById('adm-location').value.trim();
+      const desc = document.getElementById('adm-desc').value.trim();
+
+      if (!loc || !desc) return;
+
+      const newId = 'CP-' + Math.floor(2700 + Math.random() * 900);
+      const newReq = {
+        id: newId,
+        category: cat,
+        location: loc,
+        desc: desc,
+        raisedAt: '18 Sep 2026',
+        status: 'In Progress',
+        userEmail: 'admin@civic.com (Staff)'
+      };
+
+      const updated = [newReq, ...getUserRequests()];
+      saveUserRequests(updated);
+
+      document.getElementById('adm-location').value = '';
+      document.getElementById('adm-desc').value = '';
+      renderAdminTable();
+    });
+
+    renderAdminTable();
+  </script>
+</body>
+</html>

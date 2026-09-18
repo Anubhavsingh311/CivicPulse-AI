@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incident Explorer — CivicPulse Admin</title>
+  <meta name="description" content="Search, filter and audit granular civic incident complaints." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+    <!-- Admin Sidebar -->
+    <aside class="sidebar sidebar-admin" id="admin-sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon-sm">CP</div>
+        <div class="sidebar-logo-text">
+          <div class="sidebar-brand">CivicPulse</div>
+          <div class="sidebar-role">Admin Panel</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <div class="nav-group-label">OVERVIEW</div>
+          <a href="admin-command.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            <span>Command Center</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">MONITOR</div>
+          <a href="admin-explorer.html" class="nav-item active">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Incident Explorer</span>
+          </a>
+          <a href="admin-emerging.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m10.29 3.86-8.07 13.97a1 1 0 0 0 .88 1.5h16.15a1 1 0 0 0 .88-1.5L11.71 3.86a1 1 0 0 0-1.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Emerging Issues</span>
+            <span class="nav-badge">7</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">REPORT</div>
+          <a href="admin-briefing.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Daily Briefing</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">RESIDENT SERVICES</div>
+          <a href="admin-requests.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            <span>Raise a Request</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-status">
+          <span class="status-dot"></span>
+          <span class="status-text">Analytics operational</span>
+        </div>
+        <div class="sidebar-data-coverage">
+          <div class="data-label">Data Coverage</div>
+          <div class="data-grid">
+            <div class="data-item"><div class="data-val">10 wks</div><div class="data-sub">data range</div></div>
+            <div class="data-item"><div class="data-val">12,482</div><div class="data-sub">complaints</div></div>
+            <div class="data-item"><div class="data-val">8</div><div class="data-sub">localities</div></div>
+            <div class="data-item"><div class="data-val">9</div><div class="data-sub">categories</div></div>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="user-avatar">AS</div>
+          <div class="user-info">
+            <div class="user-name">Amit Singh</div>
+            <div class="user-role">Operations Analyst</div>
+          </div>
+          <button class="logout-btn" title="Sign out" onclick="doSignOut()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="app-main">
+      <header class="topnav">
+        <button class="sidebar-toggle" title="Toggle Sidebar">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topnav-title">
+          <h1 class="page-title">Incident Explorer</h1>
+          <p class="page-subtitle">Search, filter and investigate submitted civic complaints.</p>
+        </div>
+        <div class="topnav-actions">
+          <div class="date-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4F7568" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span class="mono">18 Sep 2026</span>
+          </div>
+          <div class="user-avatar-sm" onclick="doSignOut()" title="Click to sign out">AS</div>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <div style="padding: 24px; display: flex; flex-direction: column; gap: 18px;">
+          <div>
+            <h2 class="section-title">Incident Explorer</h2>
+            <p class="section-subtitle">Search, filter, and inspect detailed citizen reports</p>
+          </div>
+
+          <!-- Interactive Timeline & Volume Graph Strip -->
+          <div class="card" style="padding: 16px 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 6px;">
+                <span>📈 Incident Timeline Filter</span>
+                <span style="font-size: 11px; font-weight: 400; color: var(--text-muted);">(Click any date or category bar below to filter the table immediately)</span>
+              </div>
+              <button class="btn-secondary" id="clear-quick-filter-btn" style="font-size: 11px; padding: 3px 8px; display: none;" onclick="clearAllTimelineFilters()">
+                Reset Timeline Filter ✕
+              </button>
+            </div>
+
+            <!-- Interactive Timeline Bars -->
+            <div id="timeline-bars-container" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 8px;"></div>
+          </div>
+
+          <!-- Filter Bar -->
+          <div class="card" style="padding: 16px 18px;">
+            <div class="filter-row">
+              <div class="filter-search">
+                <label class="filter-label">Search Query</label>
+                <input type="text" id="exp-search-input" class="filter-select" placeholder="Search by text, ID (e.g. #1023), date, or category" />
+              </div>
+
+              <div class="filter-group">
+                <label class="filter-label">Date</label>
+                <select id="exp-date-select" class="filter-select">
+                  <option value="All">All Dates</option>
+                  <option value="Sep 18">18 Sep 2026 (Today)</option>
+                  <option value="Sep 17">17 Sep 2026</option>
+                  <option value="Sep 16">16 Sep 2026</option>
+                  <option value="Sep 15">15 Sep 2026</option>
+                  <option value="Sep 14">14 Sep 2026</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label class="filter-label">Category</label>
+                <select id="exp-cat-select" class="filter-select">
+                  <option value="All">All Categories</option>
+                  <option>Water Supply</option>
+                  <option>Roads & Potholes</option>
+                  <option>Garbage / Sanitation</option>
+                  <option>Electricity</option>
+                  <option>Street Lights</option>
+                  <option>Traffic</option>
+                  <option>Drainage</option>
+                  <option>Public Safety</option>
+                  <option>Parks / Public Spaces</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label class="filter-label">Location</label>
+                <select id="exp-loc-select" class="filter-select">
+                  <option value="All">All Locations</option>
+                  <option>Sector 12</option>
+                  <option>Sector 4</option>
+                  <option>Sector 6</option>
+                  <option>Sector 8</option>
+                  <option>Sector 15</option>
+                  <option>Ward 2</option>
+                  <option>Ward 3</option>
+                  <option>Ward 7</option>
+                  <option>Ward 9</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label class="filter-label">Status</label>
+                <select id="exp-status-select" class="filter-select">
+                  <option value="All">All Statuses</option>
+                  <option value="Open">Open</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Resolved">Resolved</option>
+                  <option value="Escalated">Escalated</option>
+                </select>
+              </div>
+
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-primary" onclick="applyFilters()">Filter</button>
+                <button class="btn-secondary" onclick="resetFilters()">Reset</button>
+              </div>
+            </div>
+
+            <!-- Active Chips -->
+            <div id="exp-chips" style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; align-items: center;"></div>
+          </div>
+
+          <!-- Complaints Table -->
+          <div class="card" style="overflow: hidden;">
+            <div style="padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+              <div id="exp-count" style="font-size: 13px; font-weight: 700; color: var(--text-primary);">
+                0 Incidents found
+              </div>
+              <div id="exp-page-info" class="mono" style="font-size: 11px; color: var(--text-muted);">
+                Page 1 of 1
+              </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th onclick="sortCol('id')">ID ⇅</th>
+                    <th>Complaint Description</th>
+                    <th onclick="sortCol('category')">Category ⇅</th>
+                    <th onclick="sortCol('location')">Location ⇅</th>
+                    <th onclick="sortCol('date')">Date ⇅</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Cluster</th>
+                    <th>Activity</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="exp-table-body"></tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            <div style="padding: 12px 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+              <div id="exp-range" style="font-size: 12px; color: var(--text-muted);">Showing 1–8</div>
+              <div class="pagination" id="exp-pagination"></div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Incident Detail Drawer -->
+  <div id="drawer-overlay" class="drawer-overlay hidden"></div>
+  <div id="detail-drawer" class="detail-drawer hidden">
+    <div class="drawer-header">
+      <div>
+        <div class="drawer-label">INCIDENT DETAIL</div>
+        <div class="drawer-title" id="drawer-title">Incident #1023</div>
+      </div>
+      <button class="icon-btn" id="drawer-close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="drawer-body"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    initShell('admin');
+
+    // Parse URL params
+    const params = new URLSearchParams(window.location.search);
+    let filterSearch = params.get('q') || '';
+    let filterDate = params.get('date') || 'All';
+    let filterCat = params.get('cat') || 'All';
+    let filterLoc = params.get('loc') || 'All';
+    let filterStatus = params.get('status') || 'All';
+    let currentPage = 1;
+    const pageSize = 8;
+    let sortField = null;
+    let sortAsc = true;
+
+    // If 'q' matches a known date format (like 'Sep 18' or '18 Sep'), treat it as date filter
+    if (filterSearch && (filterSearch.includes('Sep') || filterSearch.includes('18 Sep'))) {
+      if (filterSearch.includes('18')) filterDate = 'Sep 18';
+      else if (filterSearch.includes('17')) filterDate = 'Sep 17';
+      else if (filterSearch.includes('16')) filterDate = 'Sep 16';
+      else if (filterSearch.includes('15')) filterDate = 'Sep 15';
+      else if (filterSearch.includes('14')) filterDate = 'Sep 14';
+      filterSearch = ''; // Clear raw search so date filter handles it cleanly
+    }
+
+    document.getElementById('exp-search-input').value = filterSearch;
+    document.getElementById('exp-date-select').value = filterDate;
+    document.getElementById('exp-cat-select').value = filterCat;
+    document.getElementById('exp-loc-select').value = filterLoc;
+    document.getElementById('exp-status-select').value = filterStatus;
+
+    // ── Dynamic Date Dropdown Population ──────────────────────
+    function populateDateDropdown() {
+      const select = document.getElementById('exp-date-select');
+      const uniqueDates = [...new Set(complaints.map(c => c.date))];
+      select.innerHTML = '<option value="All">All Dates (All Tickets)</option>' +
+        uniqueDates.map(d => {
+          const match = complaints.find(c => c.date === d);
+          const count = complaints.filter(c => c.date === d).length;
+          return `<option value="${escapeHtml(d)}">${escapeHtml(match ? match.fullDate : d)} (${count} complaints)</option>`;
+        }).join('');
+      select.value = filterDate;
+    }
+    populateDateDropdown();
+
+    // ── Render Timeline Bars & Category Quick Pills ────────────
+    function getTimelineDays() {
+      // Get unique dates from complaints
+      const uniqueDates = [...new Set(complaints.map(c => c.date))].slice(0, 8);
+      return uniqueDates.map(d => {
+        const count = complaints.filter(c => c.date === d).length;
+        const isSpike = count >= 10;
+        return {
+          date: d,
+          label: d === 'Sep 18' ? 'Today (18 Sep)' : d,
+          count: count,
+          spike: isSpike
+        };
+      });
+    }
+
+    function renderTimelineBars() {
+      const container = document.getElementById('timeline-bars-container');
+      const clearBtn = document.getElementById('clear-quick-filter-btn');
+      const days = getTimelineDays();
+      const maxCount = Math.max(...days.map(d => d.count), 1);
+
+      clearBtn.style.display = (filterDate !== 'All' || filterCat !== 'All' || filterLoc !== 'All' || filterStatus !== 'All' || filterSearch) ? 'block' : 'none';
+
+      container.innerHTML = `
+        <div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px;">
+            ${days.map(d => {
+              const isSelected = (filterDate === d.date);
+              const maxBarH = 28;
+              const barH = Math.max(6, (d.count / maxCount) * maxBarH);
+              const barColor = d.spike ? '#A9473F' : '#35594E';
+
+              return `
+                <div onclick="selectTimelineDate('${d.date}')" style="background: ${isSelected ? 'rgba(79,117,104,0.18)' : 'var(--bg-card2)'}; border: 1.5px solid ${isSelected ? 'var(--accent)' : 'var(--border)'}; border-radius: 8px; padding: 8px 10px; cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; justify-content: space-between;" title="Click to filter to ${d.label}">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                    <span style="font-size: 11px; font-weight: ${isSelected ? '700' : '600'}; color: ${isSelected ? 'var(--accent)' : 'var(--text-primary)'};">${d.label}</span>
+                    ${d.spike ? '<span class="badge badge-critical" style="font-size: 8px; padding: 1px 3px;">Spike</span>' : ''}
+                  </div>
+
+                  <div style="display: flex; align-items: flex-end; gap: 6px;">
+                    <div style="height: ${maxBarH}px; width: 6px; background: #EDEDEA; border-radius: 3px; display: flex; align-items: flex-end; overflow: hidden;">
+                      <div style="height: ${barH}px; width: 100%; background: ${barColor}; border-radius: 3px;"></div>
+                    </div>
+                    <div>
+                      <div class="mono" style="font-size: 14px; font-weight: 800; color: ${barColor}; line-height: 1;">${d.count}</div>
+                      <div style="font-size: 8px; color: var(--text-muted); text-transform: uppercase;">Tickets</div>
+                    </div>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <!-- Quick Category Filter Pills -->
+          <div style="display: flex; align-items: center; gap: 6px; overflow-x: auto; padding-top: 4px; border-top: 1px solid var(--border2);">
+            <span style="font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; white-space: nowrap;">Quick Categories:</span>
+            <button class="cat-pill ${filterCat === 'All' ? 'active' : ''}" onclick="selectCategoryPill('All')">All</button>
+            ${categoryData.slice(0, 7).map(c => `
+              <button class="cat-pill ${filterCat === c.category ? 'active' : ''}" onclick="selectCategoryPill('${escapeHtml(c.category)}')">
+                ${escapeHtml(c.category)}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function selectTimelineDate(d) {
+      if (filterDate === d) {
+        filterDate = 'All';
+      } else {
+        filterDate = d;
+      }
+      document.getElementById('exp-date-select').value = filterDate;
+      currentPage = 1;
+      renderTimelineBars();
+      renderTable();
+    }
+
+    function selectCategoryPill(cat) {
+      filterCat = cat;
+      document.getElementById('exp-cat-select').value = cat;
+      currentPage = 1;
+      renderTimelineBars();
+      renderTable();
+    }
+
+    function clearAllTimelineFilters() {
+      resetFilters();
+    }
+
+    // ── Filter Data ────────────────────────────────────────────
+    function getFiltered() {
+      let list = [...complaints];
+      const q = filterSearch.toLowerCase().trim();
+
+      if (q) {
+        list = list.filter(c =>
+          c.text.toLowerCase().includes(q) ||
+          c.id.toLowerCase().includes(q) ||
+          c.location.toLowerCase().includes(q) ||
+          c.category.toLowerCase().includes(q) ||
+          (c.date && c.date.toLowerCase().includes(q)) ||
+          (c.fullDate && c.fullDate.toLowerCase().includes(q)) ||
+          (c.activity && c.activity.toLowerCase().includes(q)) ||
+          (c.cluster && c.cluster.toLowerCase().includes(q)) ||
+          (c.status && c.status.toLowerCase().includes(q))
+        );
+      }
+
+      if (filterDate !== 'All') {
+        list = list.filter(c => c.date === filterDate || (c.fullDate && c.fullDate.includes(filterDate)));
+      }
+      if (filterCat !== 'All') list = list.filter(c => c.category === filterCat);
+      if (filterLoc !== 'All') list = list.filter(c => c.location === filterLoc);
+      if (filterStatus !== 'All') list = list.filter(c => c.status === filterStatus);
+
+      if (sortField) {
+        list.sort((a, b) => {
+          const valA = a[sortField] || '';
+          const valB = b[sortField] || '';
+          return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        });
+      }
+      return list;
+    }
+
+    function renderTable() {
+      const filtered = getFiltered();
+      const totalPages = Math.ceil(filtered.length / pageSize) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      const paged = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+      document.getElementById('exp-count').textContent = `${filtered.length} Incident${filtered.length === 1 ? '' : 's'} found`;
+      document.getElementById('exp-page-info').textContent = `Page ${currentPage} of ${totalPages}`;
+      document.getElementById('exp-range').textContent = `Showing ${filtered.length === 0 ? 0 : (currentPage - 1) * pageSize + 1}–${Math.min(currentPage * pageSize, filtered.length)} of ${filtered.length}`;
+
+      const tbody = document.getElementById('exp-table-body');
+      if (paged.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding:48px; color:var(--text-muted); font-size: 13px;">No complaints match the specified filters. Try adjusting date, category, or search keywords.</td></tr>`;
+      } else {
+        tbody.innerHTML = paged.map(c => `
+          <tr onclick="openIncidentDrawer('${c.id}')" title="Click to inspect ${c.id}">
+            <td class="mono" style="font-weight: 600; color: var(--accent2);">${escapeHtml(c.id)}</td>
+            <td style="max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-style: italic; color: var(--text-secondary);">
+              "${escapeHtml(c.text)}"
+            </td>
+            <td style="font-weight: 500;">${escapeHtml(c.category)}</td>
+            <td style="color: var(--text-secondary);">${escapeHtml(c.location)}</td>
+            <td class="mono" style="font-size: 11px; color: var(--text-primary); font-weight: 600;">${escapeHtml(c.date || 'Sep 18')}</td>
+            <td class="mono" style="font-size: 11px; color: var(--text-muted);">${escapeHtml(c.timestamp)}</td>
+            <td>${renderStatusBadge(c.status)}</td>
+            <td class="mono" style="font-size: 11px; color: ${c.cluster ? 'var(--accent2)' : 'var(--text-muted)'};">
+              ${escapeHtml(c.cluster || '—')}
+            </td>
+            <td>${renderActivityBadge(c.activity)}</td>
+            <td style="text-align: right;">
+              <button class="btn-secondary" style="font-size: 11px; padding: 4px 8px;" onclick="event.stopPropagation(); openIncidentDrawer('${c.id}')">
+                Inspect
+              </button>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // Render Pagination
+      const paginationEl = document.getElementById('exp-pagination');
+      paginationEl.innerHTML = `
+        <button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="goPage(${currentPage - 1})">← Prev</button>
+        ${Array.from({ length: totalPages }, (_, i) => i + 1).map(p => `
+          <button class="page-btn ${currentPage === p ? 'active' : ''}" onclick="goPage(${p})">${p}</button>
+        `).join('')}
+        <button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="goPage(${currentPage + 1})">Next →</button>
+      `;
+
+      // Render Active Chips
+      const chipsEl = document.getElementById('exp-chips');
+      const chips = [];
+      if (filterDate !== 'All') chips.push({ label: `Date: ${filterDate}`, clear: () => { filterDate = 'All'; document.getElementById('exp-date-select').value = 'All'; renderTimelineBars(); } });
+      if (filterCat !== 'All') chips.push({ label: `Category: ${filterCat}`, clear: () => { filterCat = 'All'; document.getElementById('exp-cat-select').value = 'All'; } });
+      if (filterLoc !== 'All') chips.push({ label: `Location: ${filterLoc}`, clear: () => { filterLoc = 'All'; document.getElementById('exp-loc-select').value = 'All'; } });
+      if (filterStatus !== 'All') chips.push({ label: `Status: ${filterStatus}`, clear: () => { filterStatus = 'All'; document.getElementById('exp-status-select').value = 'All'; } });
+      if (filterSearch) chips.push({ label: `Query: "${filterSearch}"`, clear: () => { filterSearch = ''; document.getElementById('exp-search-input').value = ''; } });
+
+      if (chips.length === 0) {
+        chipsEl.innerHTML = '';
+      } else {
+        chipsEl.innerHTML = `<span style="font-size:11px; font-weight:600; color:var(--text-muted);">Active Filters:</span>` +
+          chips.map((chip, idx) => `
+            <span class="chip">
+              <span>${escapeHtml(chip.label)}</span>
+              <button class="chip-remove" onclick="clearChip(${idx})">×</button>
+            </span>
+          `).join('');
+      }
+      window._activeChips = chips;
+    }
+
+    function clearChip(idx) {
+      if (window._activeChips && window._activeChips[idx]) {
+        window._activeChips[idx].clear();
+        currentPage = 1;
+        renderTable();
+      }
+    }
+
+    function applyFilters() {
+      filterSearch = document.getElementById('exp-search-input').value.trim();
+      filterDate = document.getElementById('exp-date-select').value;
+      filterCat = document.getElementById('exp-cat-select').value;
+      filterLoc = document.getElementById('exp-loc-select').value;
+      filterStatus = document.getElementById('exp-status-select').value;
+      currentPage = 1;
+      renderTimelineBars();
+      renderTable();
+    }
+
+    function resetFilters() {
+      filterSearch = '';
+      filterDate = 'All';
+      filterCat = 'All';
+      filterLoc = 'All';
+      filterStatus = 'All';
+      document.getElementById('exp-search-input').value = '';
+      document.getElementById('exp-date-select').value = 'All';
+      document.getElementById('exp-cat-select').value = 'All';
+      document.getElementById('exp-loc-select').value = 'All';
+      document.getElementById('exp-status-select').value = 'All';
+      currentPage = 1;
+      renderTimelineBars();
+      renderTable();
+    }
+
+    function goPage(p) {
+      currentPage = p;
+      renderTable();
+    }
+
+    function sortCol(field) {
+      if (sortField === field) sortAsc = !sortAsc;
+      else { sortField = field; sortAsc = true; }
+      renderTable();
+    }
+
+    document.getElementById('exp-search-input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') applyFilters();
+    });
+
+    renderTimelineBars();
+    renderTable();
+  </script>
+</body>
+</html>

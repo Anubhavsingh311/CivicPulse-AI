@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Operations Briefing — CivicPulse Admin</title>
+  <meta name="description" content="Automated daily civic operations synthesis and verified evidence memorandum." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+    <!-- Admin Sidebar -->
+    <aside class="sidebar sidebar-admin" id="admin-sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon-sm">CP</div>
+        <div class="sidebar-logo-text">
+          <div class="sidebar-brand">CivicPulse</div>
+          <div class="sidebar-role">Admin Panel</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <div class="nav-group-label">OVERVIEW</div>
+          <a href="admin-command.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            <span>Command Center</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">MONITOR</div>
+          <a href="admin-explorer.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Incident Explorer</span>
+          </a>
+          <a href="admin-emerging.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m10.29 3.86-8.07 13.97a1 1 0 0 0 .88 1.5h16.15a1 1 0 0 0 .88-1.5L11.71 3.86a1 1 0 0 0-1.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Emerging Issues</span>
+            <span class="nav-badge">7</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">REPORT</div>
+          <a href="admin-briefing.html" class="nav-item active">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Daily Briefing</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">RESIDENT SERVICES</div>
+          <a href="admin-requests.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            <span>Raise a Request</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-status">
+          <span class="status-dot"></span>
+          <span class="status-text">Analytics operational</span>
+        </div>
+        <div class="sidebar-data-coverage">
+          <div class="data-label">Data Coverage</div>
+          <div class="data-grid">
+            <div class="data-item"><div class="data-val">10 wks</div><div class="data-sub">data range</div></div>
+            <div class="data-item"><div class="data-val">12,482</div><div class="data-sub">complaints</div></div>
+            <div class="data-item"><div class="data-val">8</div><div class="data-sub">localities</div></div>
+            <div class="data-item"><div class="data-val">9</div><div class="data-sub">categories</div></div>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="user-avatar">AS</div>
+          <div class="user-info">
+            <div class="user-name">Amit Singh</div>
+            <div class="user-role">Operations Analyst</div>
+          </div>
+          <button class="logout-btn" title="Sign out" onclick="doSignOut()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="app-main">
+      <header class="topnav">
+        <button class="sidebar-toggle" title="Toggle Sidebar">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topnav-title">
+          <h1 class="page-title">Daily Civic Operations Briefing</h1>
+          <p class="page-subtitle">Evidence-backed summary of the most important emerging civic issues.</p>
+        </div>
+        <div class="topnav-actions">
+          <div class="search-box">
+            <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8A918D" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" class="search-input" placeholder="Search complaints…" onkeydown="if(event.key==='Enter') window.location.href='admin-explorer.html?q='+encodeURIComponent(this.value)" />
+          </div>
+          <div class="date-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4F7568" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span class="mono">18 Sep 2026</span>
+          </div>
+          <div class="notif-btn">
+            <button class="icon-btn" id="notif-toggle">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="notif-dot"></span>
+            </button>
+            <div class="notif-dropdown hidden" id="notif-dropdown">
+              <div class="notif-header">Notifications</div>
+              <div class="notif-item critical-notif" onclick="openIncidentDrawer('#1023')">
+                <div class="notif-dot-item critical-dot"></div>
+                <div class="notif-content"><div class="notif-title">New spike detected</div><div class="notif-desc">Water Supply · Sector 12</div></div>
+                <div class="notif-time">2m ago</div>
+              </div>
+              <div class="notif-item" onclick="openIncidentDrawer('#1025')">
+                <div class="notif-dot-item normal-dot"></div>
+                <div class="notif-content"><div class="notif-title">Cluster updated</div><div class="notif-desc">Garbage · Ward 7 — 18 complaints</div></div>
+                <div class="notif-time">14m ago</div>
+              </div>
+              <div class="notif-item">
+                <div class="notif-dot-item normal-dot"></div>
+                <div class="notif-content"><div class="notif-title">Briefing generated</div><div class="notif-desc">Daily briefing for 18 Sep 2026</div></div>
+                <div class="notif-time">1h ago</div>
+              </div>
+            </div>
+          </div>
+          <div class="user-avatar-sm" onclick="doSignOut()" title="Click to sign out">AS</div>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <div style="max-width: 980px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <h2 class="section-title">Daily Civic Operations Briefing</h2>
+              <p class="section-subtitle">Auto-generated operational synthesis backed by deterministic evidence</p>
+            </div>
+
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button class="btn btn-primary" id="refresh-btn" onclick="triggerRefresh()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                <span>Refresh Briefing</span>
+              </button>
+              <button class="btn-secondary" onclick="window.print()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                <span>Print / PDF</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- KPI Strip -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <span class="kpi-label">Detected Anomalies</span>
+              <div class="kpi-value" style="color: var(--critical);">7</div>
+              <div class="kpi-delta" style="color: var(--critical);">2 Critical / 5 High</div>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Analyzed Records</span>
+              <div class="kpi-value">12,482</div>
+              <div class="kpi-delta" style="color: var(--accent2);">Full coverage</div>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Top Spike Surge</span>
+              <div class="kpi-value" style="color: var(--critical);">+411%</div>
+              <div class="kpi-delta" style="color: var(--critical);">Water Sector 12</div>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Actionable Protocols</span>
+              <div class="kpi-value" style="color: var(--success);">4</div>
+              <div class="kpi-delta" style="color: var(--success);">Dispatched to field</div>
+            </div>
+          </div>
+
+          <!-- Refresh Loading Indicator -->
+          <div id="briefing-loading" style="display: none; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border); padding: 40px; text-align: center;">
+            <div class="spin" style="display: inline-block; width: 28px; height: 28px; border: 3px solid #DEDCD4; border-top-color: var(--accent2); border-radius: 50%; margin-bottom: 12px;"></div>
+            <div style="font-size: 15px; font-weight: 700; color: var(--text-primary);">Synthesizing civic incident intelligence…</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Computing cluster correlations and cross-department trends</div>
+          </div>
+
+          <!-- Briefing Document Card -->
+          <div id="briefing-doc" style="display: flex; flex-direction: column; gap: 18px;">
+            <div class="briefing-header-card">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                <span class="status-dot" style="background: #6F8F7A;"></span>
+                <span style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8BA898;">
+                  CIVICPULSE AI — AUTOMATED INTELLIGENCE MEMORANDUM
+                </span>
+              </div>
+              <h1 style="font-size: 24px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 4px; color: #F4F1EA;">
+                Daily Civic Operations Briefing
+              </h1>
+              <div style="font-size: 12px; color: var(--text-sidebar);">
+                Date: 18 September 2026 · Prepared for: Operations Command & Commissioners · Internal Use
+              </div>
+
+              <div style="margin-top: 14px; padding: 12px 14px; background: rgba(111,143,122,0.14); border: 1px solid rgba(111,143,122,0.25); border-radius: 6px; font-size: 12px; color: #E0EAE3; line-height: 1.5;">
+                <strong>Verification Statement:</strong> All statistics, percentages, and timestamps in this document are strictly calculated from active municipal telemetry databases. No values are synthetic hallucinations.
+              </div>
+            </div>
+
+            <!-- Top Priority Incidents -->
+            <div class="card" style="padding: 24px;">
+              <div style="font-size: 15px; font-weight: 800; color: var(--text-primary); margin-bottom: 16px;">
+                Top Priority Incidents Requiring Dispatch
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 20px;" id="briefing-issues-list"></div>
+            </div>
+
+            <!-- Operational Recommendations -->
+            <div class="card" style="padding: 24px;">
+              <div style="font-size: 15px; font-weight: 800; color: var(--text-primary); margin-bottom: 14px;">
+                Immediate Operational Action Protocols
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="padding: 12px 14px; border-radius: 6px; background: #f3e9e8; border-left: 4px solid #A9473F; display: flex; gap: 12px; align-items: center;">
+                  <span style="font-size: 10px; font-weight: 800; background: #fff; color: #A9473F; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">Immediate</span>
+                  <span style="font-size: 13px; color: var(--text-primary);">Dispatch Water Pipeline Inspection Engineers to <strong>Sector 12</strong>. Major distribution failure likely.</span>
+                </div>
+
+                <div style="padding: 12px 14px; border-radius: 6px; background: #f6f0e4; border-left: 4px solid #B8873B; display: flex; gap: 12px; align-items: center;">
+                  <span style="font-size: 10px; font-weight: 800; background: #fff; color: #B8873B; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">High Priority</span>
+                  <span style="font-size: 13px; color: var(--text-primary);">Reroute municipal compaction vehicles to <strong>Ward 7</strong> to resolve 4-day sanitation accumulation.</span>
+                </div>
+
+                <div style="padding: 12px 14px; border-radius: 6px; background: #f6f0e4; border-left: 4px solid #B8873B; display: flex; gap: 12px; align-items: center;">
+                  <span style="font-size: 10px; font-weight: 800; background: #fff; color: #B8873B; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">High Priority</span>
+                  <span style="font-size: 13px; color: var(--text-primary);">Deploy asphalt cold-mix crew to <strong>Sector 4</strong> for emergency pothole patching on main school artery.</span>
+                </div>
+
+                <div style="padding: 12px 14px; border-radius: 6px; background: #eaeff0; border-left: 4px solid #5C7880; display: flex; gap: 12px; align-items: center;">
+                  <span style="font-size: 10px; font-weight: 800; background: #fff; color: #5C7880; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">Monitoring</span>
+                  <span style="font-size: 13px; color: var(--text-primary);">Maintain sensor telemetry on <strong>Ward 9</strong> electrical feeder lines; no immediate safety escalation yet.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Incident Detail Drawer -->
+  <div id="drawer-overlay" class="drawer-overlay hidden"></div>
+  <div id="detail-drawer" class="detail-drawer hidden">
+    <div class="drawer-header">
+      <div>
+        <div class="drawer-label">INCIDENT DETAIL</div>
+        <div class="drawer-title" id="drawer-title">Incident #1023</div>
+      </div>
+      <button class="icon-btn" id="drawer-close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="drawer-body"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    initShell('admin');
+
+    // Populate Top Priority Incidents via JavaScript
+    const issuesListEl = document.getElementById('briefing-issues-list');
+    issuesListEl.innerHTML = emergingIssues.map((issue, idx) => {
+      const ac = getActivityColor(issue.activity);
+      return `
+        <div style="padding-bottom: 18px; border-bottom: ${idx < emergingIssues.length - 1 ? '1px solid var(--border2)' : 'none'};">
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="width: 26px; height: 26px; border-radius: 50%; background: ${idx === 0 ? 'var(--critical-bg)' : 'var(--bg-card2)'}; color: ${idx === 0 ? 'var(--critical)' : 'var(--text-secondary)'}; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; font-family: var(--font-mono); flex-shrink: 0;">
+              ${idx + 1}
+            </div>
+
+            <div style="flex: 1;">
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px;">
+                <span style="font-size: 16px; font-weight: 800; color: var(--text-primary);">${escapeHtml(issue.category)}</span>
+                <span style="font-size: 13px; color: var(--text-muted);">—</span>
+                <span style="font-size: 14px; font-weight: 600; color: var(--text-secondary);">📍 ${escapeHtml(issue.location)}</span>
+                ${renderActivityBadge(issue.activity)}
+              </div>
+
+              <p style="font-size: 13px; color: var(--text-primary); line-height: 1.6; margin: 0 0 10px;">
+                <strong>${issue.complaints}</strong> ${issue.category.toLowerCase()} complaints were recorded in <strong>${escapeHtml(issue.location)}</strong> compared with a historical baseline of <strong>${issue.baseline}</strong>. The activity is acutely abnormal, registering a surge of <strong style="color: ${ac};">+${issue.increasePercent}%</strong>. A total of <strong>${issue.similarComplaints}</strong> complaints exhibit high lexical similarity, concentrated around <strong>${escapeHtml(issue.timeConcentration)}</strong>.
+              </p>
+
+              <div style="background: var(--bg-card2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px;">
+                <div style="font-size: 10px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;">
+                  Verified Evidence Metrics
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;">
+                  <span class="evidence-pill">${issue.complaints} complaints</span>
+                  <span class="evidence-pill">Baseline: ${issue.baseline}</span>
+                  <span class="evidence-pill" style="color: ${ac}; font-weight: 700;">+${issue.increasePercent}% surge</span>
+                  <span class="evidence-pill">Cluster: ${issue.similarComplaints} tickets</span>
+                  <span class="evidence-pill">Time peak: ${issue.timeConcentration}</span>
+                </div>
+
+                <!-- Interactive Comparative Surge Ratio Meter -->
+                <div style="border-top: 1px solid var(--border); padding-top: 8px;">
+                  <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px;">
+                    <span style="color: var(--text-secondary);">Baseline vs Anomaly Surge Ratio:</span>
+                    <span class="mono" style="color: ${ac}; font-weight: 700;">${issue.baseline} expected ➔ ${issue.complaints} recorded (+${issue.increasePercent}%)</span>
+                  </div>
+                  <div style="height: 6px; background: #EDEDEA; border-radius: 3px; overflow: hidden; display: flex;">
+                    <div style="height: 100%; width: ${Math.round((issue.baseline / issue.complaints) * 100)}%; background: #8A918D;" title="Baseline proportion (${issue.baseline})"></div>
+                    <div style="height: 100%; width: ${100 - Math.round((issue.baseline / issue.complaints) * 100)}%; background: ${ac};" title="Excess surge proportion (+${issue.increasePercent}%)"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    function triggerRefresh() {
+      const loading = document.getElementById('briefing-loading');
+      const doc = document.getElementById('briefing-doc');
+      const btn = document.getElementById('refresh-btn');
+
+      loading.style.display = 'block';
+      doc.style.display = 'none';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        loading.style.display = 'none';
+        doc.style.display = 'flex';
+        btn.disabled = false;
+      }, 1200);
+    }
+  </script>
+</body>
+</html>

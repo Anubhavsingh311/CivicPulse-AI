@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emerging Issues — CivicPulse Admin</title>
+  <meta name="description" content="AI detected emerging civic clusters and anomaly patterns." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+    <!-- Admin Sidebar -->
+    <aside class="sidebar sidebar-admin" id="admin-sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon-sm">CP</div>
+        <div class="sidebar-logo-text">
+          <div class="sidebar-brand">CivicPulse</div>
+          <div class="sidebar-role">Admin Panel</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <div class="nav-group-label">OVERVIEW</div>
+          <a href="admin-command.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            <span>Command Center</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">MONITOR</div>
+          <a href="admin-explorer.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Incident Explorer</span>
+          </a>
+          <a href="admin-emerging.html" class="nav-item active">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m10.29 3.86-8.07 13.97a1 1 0 0 0 .88 1.5h16.15a1 1 0 0 0 .88-1.5L11.71 3.86a1 1 0 0 0-1.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Emerging Issues</span>
+            <span class="nav-badge">7</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">REPORT</div>
+          <a href="admin-briefing.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Daily Briefing</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">RESIDENT SERVICES</div>
+          <a href="admin-requests.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            <span>Raise a Request</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-status">
+          <span class="status-dot"></span>
+          <span class="status-text">Analytics operational</span>
+        </div>
+        <div class="sidebar-data-coverage">
+          <div class="data-label">Data Coverage</div>
+          <div class="data-grid">
+            <div class="data-item"><div class="data-val">10 wks</div><div class="data-sub">data range</div></div>
+            <div class="data-item"><div class="data-val">12,482</div><div class="data-sub">complaints</div></div>
+            <div class="data-item"><div class="data-val">8</div><div class="data-sub">localities</div></div>
+            <div class="data-item"><div class="data-val">9</div><div class="data-sub">categories</div></div>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="user-avatar">AS</div>
+          <div class="user-info">
+            <div class="user-name">Amit Singh</div>
+            <div class="user-role">Operations Analyst</div>
+          </div>
+          <button class="logout-btn" title="Sign out" onclick="doSignOut()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="app-main">
+      <header class="topnav">
+        <button class="sidebar-toggle" title="Toggle Sidebar">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topnav-title">
+          <h1 class="page-title">Emerging Issues</h1>
+          <p class="page-subtitle">Automatically detected patterns requiring operational attention.</p>
+        </div>
+        <div class="topnav-actions">
+          <div class="date-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4F7568" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span class="mono">18 Sep 2026</span>
+          </div>
+          <div class="user-avatar-sm" onclick="doSignOut()" title="Click to sign out">AS</div>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <div style="padding: 24px; display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <h2 class="section-title">Emerging Issues (AI Clustered)</h2>
+              <p class="section-subtitle">Real-time spike anomalies identified against 30-day baseline</p>
+            </div>
+
+            <div style="display: flex; gap: 8px;">
+              <span class="badge" style="background: var(--critical-bg); color: var(--critical); font-size: 11px; padding: 4px 10px;">7 Active Issues</span>
+              <span class="badge" style="background: var(--warn-bg); color: var(--warn); font-size: 11px; padding: 4px 10px;">2 New Today</span>
+              <span class="badge" style="background: var(--success-bg); color: var(--success); font-size: 11px; padding: 4px 10px;">13 Clusters Tracked</span>
+            </div>
+          </div>
+
+          <!-- Filter Tabs -->
+          <div class="tab-bar" id="tab-bar">
+            <button class="tab-btn active" onclick="setTab('All')">All (4)</button>
+            <button class="tab-btn" onclick="setTab('Critical')">Critical (1)</button>
+            <button class="tab-btn" onclick="setTab('High')">High (3)</button>
+            <button class="tab-btn" onclick="setTab('Medium')">Medium (0)</button>
+          </div>
+
+          <!-- Issues Grid -->
+          <div class="issue-cards-grid" id="issues-grid"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Evidence Panel Drawer -->
+  <div id="evidence-overlay" class="drawer-overlay hidden"></div>
+  <div id="evidence-panel" class="detail-drawer evidence-panel hidden">
+    <div class="drawer-header">
+      <div id="evidence-header-content"></div>
+      <button class="icon-btn" id="evidence-close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="evidence-body"></div>
+  </div>
+
+  <!-- Incident Detail Drawer (when inspecting related ticket) -->
+  <div id="drawer-overlay" class="drawer-overlay hidden"></div>
+  <div id="detail-drawer" class="detail-drawer hidden">
+    <div class="drawer-header">
+      <div>
+        <div class="drawer-label">INCIDENT DETAIL</div>
+        <div class="drawer-title" id="drawer-title">Incident #1023</div>
+      </div>
+      <button class="icon-btn" id="drawer-close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="drawer-body"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    initShell('admin');
+
+    let currentTab = 'All';
+
+    function setTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('#tab-bar .tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.startsWith(tab));
+      });
+      renderIssues();
+    }
+
+    function renderIssues() {
+      const filtered = (currentTab === 'All')
+        ? emergingIssues
+        : emergingIssues.filter(i => i.activity === currentTab);
+
+      const grid = document.getElementById('issues-grid');
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="padding: 48px; text-align: center; color: var(--text-muted); grid-column: 1 / -1;">No emerging issues under this classification.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(issue => {
+        const ac = getActivityColor(issue.activity);
+        const ic = issue.increasePercent >= 300 ? '#A9473F' : (issue.increasePercent >= 100 ? '#C36B4B' : '#B8873B');
+
+        return `
+          <div class="ei-card" style="border-left-color: ${ac};">
+            <div style="padding: 16px 18px; border-bottom: 1px solid var(--border2);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                ${renderActivityBadge(issue.activity)}
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  ${renderStatusBadge(issue.status)}
+                  <span class="mono" style="font-size: 10px; color: var(--text-muted);">${escapeHtml(issue.detectedAt)}</span>
+                </div>
+              </div>
+              <div style="font-size: 17px; font-weight: 800; color: var(--text-primary);">${escapeHtml(issue.category)}</div>
+              <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">📍 ${escapeHtml(issue.location)}</div>
+            </div>
+
+            <div style="padding: 16px 18px;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+                <div class="mini-stat">
+                  <div class="issue-stat-label">Complaints</div>
+                  <div class="issue-stat-val" style="color: ${ac}; font-size: 22px;">${issue.complaints}</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="issue-stat-label">Baseline</div>
+                  <div class="issue-stat-val" style="color: var(--text-muted); font-size: 22px;">${issue.baseline}</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="issue-stat-label">Increase</div>
+                  <div class="issue-stat-val" style="color: ${ic}; font-size: 22px;">+${issue.increasePercent}%</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="issue-stat-label">Cluster Size</div>
+                  <div class="issue-stat-val" style="color: var(--text-primary); font-size: 22px;">${issue.similarComplaints}</div>
+                </div>
+              </div>
+
+              <div style="font-size: 11px; color: var(--text-secondary); margin-bottom: 16px;">
+                ⏰ Peak activity window: <strong class="mono" style="color: var(--text-primary);">${escapeHtml(issue.timeConcentration)}</strong>
+              </div>
+
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-dark" style="flex: 1; justify-content: center;" onclick="openEvidencePanel('${issue.id}')">
+                  View Evidence
+                </button>
+                <a href="admin-explorer.html?cat=${encodeURIComponent(issue.category)}&loc=${encodeURIComponent(issue.location)}" class="btn-secondary" style="font-size: 11px; padding: 6px 12px; text-decoration: none;">
+                  ${issue.supportingComplaints.length} tickets
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    renderIssues();
+  </script>
+</body>
+</html>

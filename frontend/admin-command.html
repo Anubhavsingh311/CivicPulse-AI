@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Command Center — CivicPulse Admin</title>
+  <meta name="description" content="CivicPulse Operations Command Center: Live interactive telemetry, spike detection and incident clustering." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+    <!-- Admin Sidebar -->
+    <aside class="sidebar sidebar-admin" id="admin-sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon-sm">CP</div>
+        <div class="sidebar-logo-text">
+          <div class="sidebar-brand">CivicPulse</div>
+          <div class="sidebar-role">Admin Panel</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <div class="nav-group-label">OVERVIEW</div>
+          <a href="admin-command.html" class="nav-item active">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            <span>Command Center</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">MONITOR</div>
+          <a href="admin-explorer.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Incident Explorer</span>
+          </a>
+          <a href="admin-emerging.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m10.29 3.86-8.07 13.97a1 1 0 0 0 .88 1.5h16.15a1 1 0 0 0 .88-1.5L11.71 3.86a1 1 0 0 0-1.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Emerging Issues</span>
+            <span class="nav-badge">7</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">REPORT</div>
+          <a href="admin-briefing.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Daily Briefing</span>
+          </a>
+        </div>
+
+        <div class="nav-group">
+          <div class="nav-group-label">RESIDENT SERVICES</div>
+          <a href="admin-requests.html" class="nav-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            <span>Raise a Request</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-status">
+          <span class="status-dot"></span>
+          <span class="status-text">Analytics operational</span>
+        </div>
+        <div class="sidebar-data-coverage">
+          <div class="data-label">Data Coverage</div>
+          <div class="data-grid">
+            <div class="data-item"><div class="data-val">10 wks</div><div class="data-sub">data range</div></div>
+            <div class="data-item"><div class="data-val">12,482</div><div class="data-sub">complaints</div></div>
+            <div class="data-item"><div class="data-val">8</div><div class="data-sub">localities</div></div>
+            <div class="data-item"><div class="data-val">9</div><div class="data-sub">categories</div></div>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="user-avatar">AS</div>
+          <div class="user-info">
+            <div class="user-name">Amit Singh</div>
+            <div class="user-role">Operations Analyst</div>
+          </div>
+          <button class="logout-btn" title="Sign out" onclick="doSignOut()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="app-main">
+      <header class="topnav">
+        <button class="sidebar-toggle" title="Toggle Sidebar">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topnav-title">
+          <h1 class="page-title">Civic Intelligence Command Center</h1>
+          <p class="page-subtitle">Monitor complaint activity, emerging incidents and operational patterns.</p>
+        </div>
+        <div class="topnav-actions">
+          <div class="search-box">
+            <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8A918D" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" id="admin-search" class="search-input" placeholder="Search complaints…" onkeydown="if(event.key==='Enter') window.location.href='admin-explorer.html?q='+encodeURIComponent(this.value)" />
+          </div>
+          <div class="date-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4F7568" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span class="mono">18 Sep 2026</span>
+          </div>
+          <div class="notif-btn">
+            <button class="icon-btn" id="notif-toggle">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="notif-dot"></span>
+            </button>
+            <div class="notif-dropdown hidden" id="notif-dropdown">
+              <div class="notif-header">Notifications</div>
+              <div class="notif-item critical-notif" onclick="openIncidentDrawer('#1023')">
+                <div class="notif-dot-item critical-dot"></div>
+                <div class="notif-content"><div class="notif-title">New spike detected</div><div class="notif-desc">Water Supply · Sector 12</div></div>
+                <div class="notif-time">2m ago</div>
+              </div>
+              <div class="notif-item" onclick="openIncidentDrawer('#1025')">
+                <div class="notif-dot-item normal-dot"></div>
+                <div class="notif-content"><div class="notif-title">Cluster updated</div><div class="notif-desc">Garbage · Ward 7 — 18 complaints</div></div>
+                <div class="notif-time">14m ago</div>
+              </div>
+              <div class="notif-item" onclick="window.location.href='admin-briefing.html'">
+                <div class="notif-dot-item normal-dot"></div>
+                <div class="notif-content"><div class="notif-title">Briefing generated</div><div class="notif-desc">Daily briefing for 18 Sep 2026</div></div>
+                <div class="notif-time">1h ago</div>
+              </div>
+            </div>
+          </div>
+          <div class="user-avatar-sm" onclick="doSignOut()" title="Click to sign out">AS</div>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <div style="padding: 24px; display: flex; flex-direction: column; gap: 20px;">
+          <!-- Top Header Info -->
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <h2 class="section-title">Command Center Overview</h2>
+              <p class="section-subtitle">Real-time civic telemetry across 8 localities</p>
+            </div>
+            <div style="text-align: right;">
+              <div class="mono" style="font-size: 12px; font-weight: 600; color: var(--text-primary);">18 September 2026</div>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Continuous live telemetry streaming</div>
+            </div>
+          </div>
+
+          <!-- 4 KPI Cards -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-label">Total Complaints</span>
+                <div class="kpi-icon" style="background: rgba(79,117,104,0.1); color: var(--accent2);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+              </div>
+              <div class="kpi-value">12,482</div>
+              <div class="kpi-delta" style="color: var(--critical);">+8.4% vs prev 30 days</div>
+              <div class="kpi-sub">Across all 9 monitored categories</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-label">Open Complaints</span>
+                <div class="kpi-icon" style="background: var(--warn-bg); color: var(--warn);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+              </div>
+              <div class="kpi-value">3,241</div>
+              <div class="kpi-delta" style="color: var(--warn);">26.0% unresolved</div>
+              <div class="kpi-sub">↑142 since yesterday 08:00 AM</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-label">Detected Spikes</span>
+                <div class="kpi-icon" style="background: var(--critical-bg); color: var(--critical);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+              </div>
+              <div class="kpi-value">7</div>
+              <div class="kpi-delta" style="color: var(--critical);">2 new today</div>
+              <div class="kpi-sub">Active anomaly thresholds exceeded</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-header">
+                <span class="kpi-label">Similarity Clusters</span>
+                <div class="kpi-icon" style="background: rgba(79,117,104,0.1); color: var(--accent2);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                </div>
+              </div>
+              <div class="kpi-value">13</div>
+              <div class="kpi-delta" style="color: var(--success);">5 high similarity</div>
+              <div class="kpi-sub">Shared root-cause likelihood > 85%</div>
+            </div>
+          </div>
+
+          <!-- Charts Row: Interactive SVG Chart + Interactive Category Bars -->
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px;">
+            <!-- Interactive SVG Trend Chart Card -->
+            <div class="card" style="padding: 20px; position: relative;">
+              <div class="chart-header">
+                <div>
+                  <div class="chart-title" style="display: flex; align-items: center; gap: 8px;">
+                    <span>Complaint Activity Trend</span>
+                    <span class="badge badge-critical" id="chart-spike-pill" style="font-size: 9px; cursor: pointer;" title="Active spike detected on Sep 18">411% SPIKE ACTIVE</span>
+                  </div>
+                  <div class="chart-subtitle">Interactive cursor: hover anywhere on the chart for exact daily metrics</div>
+                </div>
+
+                <div class="time-range-btns" id="time-btns">
+                  <button class="time-btn" onclick="setChartRange('24H')">24H</button>
+                  <button class="time-btn" onclick="setChartRange('7D')">7D</button>
+                  <button class="time-btn active" onclick="setChartRange('30D')">30D</button>
+                  <button class="time-btn" onclick="setChartRange('90D')">90D</button>
+                </div>
+              </div>
+
+              <!-- Interactive Chart Canvas Slot -->
+              <div style="height: 220px; width: 100%; position: relative;" id="trend-chart-slot"></div>
+
+              <!-- Interactive Legend with dataset toggles -->
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; flex-wrap: wrap; gap: 8px;">
+                <div style="font-size: 11px; color: var(--text-muted);">
+                  💡 Click legend items to show/hide lines:
+                </div>
+
+                <div style="display: flex; gap: 14px;">
+                  <div id="legend-current" onclick="toggleDataset('current')" style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-primary); cursor: pointer; padding: 3px 8px; border-radius: 4px; background: var(--bg-card2); border: 1px solid var(--border); transition: all 0.15s;" title="Click to toggle Current Activity">
+                    <div style="width: 12px; height: 3px; background: var(--accent); border-radius: 2px;"></div>
+                    <span style="font-weight: 600;">Current Volume</span>
+                    <span class="mono" style="color: var(--accent2); font-size: 10px;" id="legend-current-val">● Live</span>
+                  </div>
+
+                  <div id="legend-baseline" onclick="toggleDataset('baseline')" style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-secondary); cursor: pointer; padding: 3px 8px; border-radius: 4px; background: var(--bg-card2); border: 1px solid var(--border); transition: all 0.15s;" title="Click to toggle Baseline">
+                    <div style="width: 12px; height: 3px; border-top: 2px dashed #8A918D;"></div>
+                    <span style="font-weight: 500;">Historical Baseline</span>
+                    <span class="mono" style="color: var(--text-muted); font-size: 10px;">(292 avg)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Category Distribution Card -->
+            <div class="card" style="padding: 20px; display: flex; flex-direction: column;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px;">
+                <div>
+                  <div class="chart-title">Category Breakdown</div>
+                  <div class="chart-subtitle">Click any bar to filter incidents table</div>
+                </div>
+                <button class="btn-secondary" id="sort-cat-btn" style="font-size: 10px; padding: 3px 8px;" onclick="toggleCategorySort()">
+                  Sort: Vol ↓
+                </button>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 6px; flex: 1; justify-content: space-around; margin-top: 6px;" id="cat-distribution-bars"></div>
+            </div>
+          </div>
+
+          <!-- Emerging Issues Alert Cards -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <h3 style="font-size: 15px; font-weight: 700; color: var(--text-primary); margin: 0;">Emerging Issues Detected</h3>
+                <span class="badge badge-critical">4 CRITICAL / HIGH</span>
+              </div>
+              <a href="admin-emerging.html" class="link-btn">
+                View all detected issues →
+              </a>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px;" id="cmd-issues-list"></div>
+          </div>
+
+          <!-- Map & Incidents Row -->
+          <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px;">
+            <!-- Interactive Map Container -->
+            <div class="card" style="padding: 20px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <div>
+                  <div class="chart-title">Geographic Spatial Density</div>
+                  <div class="chart-subtitle">Click pins to inspect locality telemetry</div>
+                </div>
+                <!-- Locality Severity Filter Tabs -->
+                <div style="display: flex; gap: 3px;">
+                  <button class="time-btn active" id="map-f-all" onclick="filterMapSeverity('All')">All (8)</button>
+                  <button class="time-btn" id="map-f-crit" onclick="filterMapSeverity('Critical')">Critical (1)</button>
+                  <button class="time-btn" id="map-f-high" onclick="filterMapSeverity('High')">High (3)</button>
+                </div>
+              </div>
+
+              <div class="map-container" id="admin-map" style="position: relative;"></div>
+              <div id="map-info-box" class="map-info"></div>
+            </div>
+
+            <!-- Recent Incidents Table (with live filtering from charts/map) -->
+            <div class="card" style="padding: 20px; overflow: hidden; display: flex; flex-direction: column;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <div>
+                  <div class="chart-title">Recent Streamed Incidents</div>
+                  <div class="chart-subtitle" id="table-filter-subtitle">Showing latest tickets</div>
+                </div>
+                <div style="display: flex; gap: 6px; align-items: center;">
+                  <button class="btn-secondary hidden" id="clear-table-filter-btn" style="font-size: 10px; padding: 2px 7px;" onclick="clearTableFilter()">
+                    Clear filter ✕
+                  </button>
+                  <a href="admin-explorer.html" class="link-btn" style="font-size: 11px;">Full explorer →</a>
+                </div>
+              </div>
+
+              <div style="overflow-x: auto; flex: 1;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Category</th>
+                      <th>Location</th>
+                      <th>Time</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recent-incidents-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Incident Detail Drawer -->
+  <div id="drawer-overlay" class="drawer-overlay hidden"></div>
+  <div id="detail-drawer" class="detail-drawer hidden">
+    <div class="drawer-header">
+      <div>
+        <div class="drawer-label">INCIDENT DETAIL</div>
+        <div class="drawer-title" id="drawer-title">Incident #1023</div>
+      </div>
+      <button class="icon-btn" id="drawer-close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="drawer-body"></div>
+  </div>
+
+  <!-- Evidence Panel -->
+  <div id="evidence-overlay" class="drawer-overlay hidden"></div>
+  <div id="evidence-panel" class="detail-drawer evidence-panel hidden">
+    <div class="drawer-header">
+      <div id="evidence-header-content"></div>
+      <button class="icon-btn" id="evidence-close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="evidence-body"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    initShell('admin');
+
+    // ── Interactive State ──────────────────────────────────────
+    let currentTimeRange = '30D';
+    let showCurrentLine = true;
+    let showBaselineLine = true;
+    let categorySortOrder = 'desc'; // 'desc' | 'alpha'
+    let selectedCategoryFilter = null;
+    let selectedLocationFilter = null;
+    let selectedDateFilter = null;
+    let mapSeverityFilter = 'All';
+    let selectedLocId = 'sector-12';
+
+    // ── Interactive SVG Line Chart ─────────────────────────────
+    function getChartSlice(range) {
+      if (range === '24H') return trendData.slice(-4);
+      if (range === '7D') return trendData.slice(-7);
+      if (range === '90D') return trendData;
+      return trendData;
+    }
+
+    function renderInteractiveSvgChart(range) {
+      const slice = getChartSlice(range);
+      const width = 640;
+      const height = 210;
+      const padding = { top: 20, right: 25, bottom: 30, left: 45 };
+
+      const maxVal = Math.max(...slice.map(d => Math.max(d.current, d.baseline))) * 1.12;
+      const minVal = 180;
+
+      const chartW = width - padding.left - padding.right;
+      const chartH = height - padding.top - padding.bottom;
+
+      const getX = (idx) => padding.left + (idx / (slice.length - 1)) * chartW;
+      const getY = (val) => padding.top + chartH - ((val - minVal) / (maxVal - minVal)) * chartH;
+
+      const currentPoints = slice.map((d, i) => `${getX(i)},${getY(d.current)}`).join(' ');
+      const baselinePoints = slice.map((d, i) => `${getX(i)},${getY(d.baseline)}`).join(' ');
+      const yTicks = [200, 350, 500, 650];
+
+      const selIdx = selectedDateFilter ? slice.findIndex(d => d.date === selectedDateFilter) : -1;
+
+      // Build SVG
+      const container = document.getElementById('trend-chart-slot');
+      container.innerHTML = `
+        <div id="chart-tooltip" class="chart-tooltip-box" style="opacity: 0; transform: translate(-50%, -100%);"></div>
+
+        <svg class="chart-svg" id="main-trend-svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none" style="width: 100%; height: 100%; overflow: visible; cursor: crosshair;">
+          <defs>
+            <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4F7568" stop-opacity="0.25" />
+              <stop offset="100%" stop-color="#4F7568" stop-opacity="0.0" />
+            </linearGradient>
+          </defs>
+
+          <!-- Horizontal Grid Lines -->
+          ${yTicks.map(t => {
+            const y = getY(t);
+            return `
+              <line x1="${padding.left}" y1="${y}" x2="${width - padding.right}" y2="${y}" stroke="#DEDCD4" stroke-width="1" stroke-dasharray="3 3" />
+              <text x="${padding.left - 8}" y="${y + 4}" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="9" fill="#8A918D">${t}</text>
+            `;
+          }).join('')}
+
+          <!-- Shaded Area Under Current Curve -->
+          ${showCurrentLine ? `
+            <polygon fill="url(#areaGrad)" points="${getX(0)},${height - padding.bottom} ${currentPoints} ${getX(slice.length - 1)},${height - padding.bottom}" />
+          ` : ''}
+
+          <!-- Baseline Dashed Polyline -->
+          <polyline id="svg-baseline-line" fill="none" stroke="#A6A298" stroke-width="2" stroke-dasharray="4 4" points="${baselinePoints}" style="opacity: ${showBaselineLine ? '1' : '0.15'}; transition: opacity 0.25s;" />
+
+          <!-- Current Volume Solid Polyline -->
+          <polyline id="svg-current-line" fill="none" stroke="#26332F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" points="${currentPoints}" style="opacity: ${showCurrentLine ? '1' : '0.15'}; transition: opacity 0.25s;" />
+
+          <!-- Selected Date Indicator -->
+          ${selIdx !== -1 ? `
+            <line x1="${getX(selIdx)}" y1="${padding.top}" x2="${getX(selIdx)}" y2="${height - padding.bottom}" stroke="#35594E" stroke-width="2" stroke-dasharray="3 3" />
+            <circle cx="${getX(selIdx)}" cy="${getY(slice[selIdx].current)}" r="8" fill="#35594E" stroke="#FFFDF8" stroke-width="2.5" />
+            <circle cx="${getX(selIdx)}" cy="${getY(slice[selIdx].current)}" r="14" fill="none" stroke="#4F7568" stroke-width="1.5" opacity="0.6" />
+          ` : ''}
+
+          <!-- Interactive Vertical Crosshair -->
+          <line id="svg-crosshair" x1="0" y1="${padding.top}" x2="0" y2="${height - padding.bottom}" stroke="#4F7568" stroke-width="1.5" stroke-dasharray="2 2" style="display: none;" />
+
+          <!-- Active Hover Circles -->
+          <circle id="hover-dot-current" r="6" fill="#35594E" stroke="#FFFDF8" stroke-width="2" style="display: none; transition: r 0.1s;" />
+          <circle id="hover-dot-baseline" r="5" fill="#8A918D" stroke="#FFFDF8" stroke-width="1.5" style="display: none;" />
+
+          <!-- Regular Data Points -->
+          ${slice.map((d, i) => {
+            const isSel = (selectedDateFilter === d.date);
+            return `
+              <circle cx="${getX(i)}" cy="${getY(d.current)}" r="${isSel ? 6 : 3}" fill="${isSel ? '#35594E' : '#4F7568'}" stroke="#FFFDF8" stroke-width="${isSel ? 2 : 1}" style="opacity: ${showCurrentLine ? '1' : '0'}; cursor: pointer;" />
+              <text x="${getX(i)}" y="${height - 8}" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="${isSel ? '700' : '400'}" fill="${isSel ? '#202827' : '#66716C'}">${escapeHtml(d.date)}</text>
+            `;
+          }).join('')}
+        </svg>
+      `;
+
+      // Attach mouse tracking for tooltip & crosshair
+      const svg = document.getElementById('main-trend-svg');
+      const tooltip = document.getElementById('chart-tooltip');
+      const crosshair = document.getElementById('svg-crosshair');
+      const dotCurrent = document.getElementById('hover-dot-current');
+      const dotBaseline = document.getElementById('hover-dot-baseline');
+
+      svg.addEventListener('mousemove', (e) => {
+        const rect = svg.getBoundingClientRect();
+        const clientX = e.clientX - rect.left;
+        const normalizedX = (clientX / rect.width) * width;
+
+        // Find closest point in slice
+        let closestIdx = 0;
+        let minDiff = Infinity;
+        slice.forEach((d, i) => {
+          const diff = Math.abs(getX(i) - normalizedX);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestIdx = i;
+          }
+        });
+
+        const d = slice[closestIdx];
+        const ptX = getX(closestIdx);
+        const ptYCurrent = getY(d.current);
+        const ptYBaseline = getY(d.baseline);
+
+        // Update crosshair
+        crosshair.setAttribute('x1', ptX);
+        crosshair.setAttribute('x2', ptX);
+        crosshair.style.display = 'block';
+
+        // Update dots
+        if (showCurrentLine) {
+          dotCurrent.setAttribute('cx', ptX);
+          dotCurrent.setAttribute('cy', ptYCurrent);
+          dotCurrent.style.display = 'block';
+        }
+        if (showBaselineLine) {
+          dotBaseline.setAttribute('cx', ptX);
+          dotBaseline.setAttribute('cy', ptYBaseline);
+          dotBaseline.style.display = 'block';
+        }
+
+        // Calculate delta percent
+        const delta = Math.round(((d.current - d.baseline) / d.baseline) * 100);
+        const isSpike = delta > 50;
+        const isSel = (selectedDateFilter === d.date);
+
+        // Position & populate tooltip
+        tooltip.innerHTML = `
+          <div class="chart-tooltip-date">${escapeHtml(d.date)}, 2026 ${isSel ? '✓ (Active Filter)' : ''}</div>
+          <div class="chart-tooltip-row">
+            <span style="color: #6F8F7A;">● Actual Volume:</span>
+            <strong class="mono" style="color: #FFFDF8;">${d.current}</strong>
+          </div>
+          <div class="chart-tooltip-row">
+            <span style="color: #C5C2B8;">○ Baseline Rate:</span>
+            <strong class="mono" style="color: #C8D8CC;">${d.baseline}</strong>
+          </div>
+          <div class="chart-tooltip-badge" style="background: ${isSpike ? '#A9473F' : '#5E806B'}; color: #FFFDF8;">
+            ${delta >= 0 ? `+${delta}% above expected` : `${delta}% below expected`}
+          </div>
+          <div style="margin-top: 6px; font-size: 9px; color: #C8D8CC; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 4px;">
+            ${isSel ? 'Click to deselect date' : 'Click to filter incidents table ↡'}<br/>Double-click to open Explorer ↗
+          </div>
+        `;
+
+        const tooltipX = (ptX / width) * rect.width;
+        const tooltipY = (ptYCurrent / height) * rect.height - 10;
+
+        tooltip.style.left = `${Math.max(85, Math.min(rect.width - 85, tooltipX))}px`;
+        tooltip.style.top = `${Math.max(10, tooltipY)}px`;
+        tooltip.style.opacity = '1';
+      });
+
+      svg.addEventListener('mouseleave', () => {
+        tooltip.style.opacity = '0';
+        crosshair.style.display = 'none';
+        dotCurrent.style.display = 'none';
+        dotBaseline.style.display = 'none';
+      });
+
+      svg.addEventListener('click', (e) => {
+        const rect = svg.getBoundingClientRect();
+        const clientX = e.clientX - rect.left;
+        const normalizedX = (clientX / rect.width) * width;
+        let closestIdx = 0;
+        let minDiff = Infinity;
+        slice.forEach((d, i) => {
+          const diff = Math.abs(getX(i) - normalizedX);
+          if (diff < minDiff) { minDiff = diff; closestIdx = i; }
+        });
+        const d = slice[closestIdx];
+        if (selectedDateFilter === d.date) {
+          selectedDateFilter = null;
+        } else {
+          selectedDateFilter = d.date;
+        }
+        renderInteractiveSvgChart(currentTimeRange);
+        renderRecentIncidents();
+      });
+
+      svg.addEventListener('dblclick', (e) => {
+        const rect = svg.getBoundingClientRect();
+        const clientX = e.clientX - rect.left;
+        const normalizedX = (clientX / rect.width) * width;
+        let closestIdx = 0;
+        let minDiff = Infinity;
+        slice.forEach((d, i) => {
+          const diff = Math.abs(getX(i) - normalizedX);
+          if (diff < minDiff) { minDiff = diff; closestIdx = i; }
+        });
+        const d = slice[closestIdx];
+        window.location.href = `admin-explorer.html?date=${encodeURIComponent(d.date)}`;
+      });
+    }
+
+    function setChartRange(r) {
+      currentTimeRange = r;
+      renderInteractiveSvgChart(r);
+      document.querySelectorAll('#time-btns .time-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.trim() === r);
+      });
+    }
+
+    function toggleDataset(type) {
+      if (type === 'current') {
+        showCurrentLine = !showCurrentLine;
+        const pill = document.getElementById('legend-current');
+        pill.style.opacity = showCurrentLine ? '1' : '0.5';
+      } else {
+        showBaselineLine = !showBaselineLine;
+        const pill = document.getElementById('legend-baseline');
+        pill.style.opacity = showBaselineLine ? '1' : '0.5';
+      }
+      renderInteractiveSvgChart(currentTimeRange);
+    }
+
+    setChartRange('30D');
+
+    // ── Interactive Category Distribution ──────────────────────
+    function renderCategoryBars() {
+      let cats = [...categoryData.slice(0, 7)];
+      if (categorySortOrder === 'alpha') {
+        cats.sort((a, b) => a.category.localeCompare(b.category));
+      } else {
+        cats.sort((a, b) => b.count - a.count);
+      }
+
+      document.getElementById('cat-distribution-bars').innerHTML = cats.map((cat, i) => {
+        const isSelected = (selectedCategoryFilter === cat.category);
+        return `
+          <div class="cat-bar-interactive ${isSelected ? 'active' : ''}" onclick="filterTableByCategory('${escapeHtml(cat.category)}')" title="Click to filter incidents to ${escapeHtml(cat.category)}">
+            <div class="cat-bar-header">
+              <span class="cat-bar-name" style="font-weight: ${isSelected ? '700' : '500'}; color: ${isSelected ? 'var(--accent)' : 'var(--text-primary)'};">
+                ${isSelected ? '✓ ' : ''}${escapeHtml(cat.category)}
+              </span>
+              <span class="cat-bar-count mono">${cat.count.toLocaleString()} (${cat.pct}%)</span>
+            </div>
+            <div class="cat-bar-track">
+              <div class="cat-bar-fill" style="width: ${cat.pct * 3.5}%; background: ${CATEGORY_COLORS[i] || 'var(--accent)'};"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleCategorySort() {
+      categorySortOrder = (categorySortOrder === 'desc') ? 'alpha' : 'desc';
+      document.getElementById('sort-cat-btn').textContent = (categorySortOrder === 'desc') ? 'Sort: Vol ↓' : 'Sort: A-Z';
+      renderCategoryBars();
+    }
+
+    renderCategoryBars();
+
+    // ── Interactive Map ────────────────────────────────────────
+    function filterMapSeverity(severity) {
+      mapSeverityFilter = severity;
+      ['all', 'crit', 'high'].forEach(id => {
+        const btn = document.getElementById(`map-f-${id}`);
+        if (btn) btn.classList.remove('active');
+      });
+      if (severity === 'All') document.getElementById('map-f-all').classList.add('active');
+      if (severity === 'Critical') document.getElementById('map-f-crit').classList.add('active');
+      if (severity === 'High') document.getElementById('map-f-high').classList.add('active');
+      renderMap();
+    }
+
+    function renderMap() {
+      let pins = mapLocations;
+      if (mapSeverityFilter !== 'All') {
+        pins = mapLocations.filter(loc => loc.activity === mapSeverityFilter);
+      }
+
+      document.getElementById('admin-map').innerHTML = `
+        <svg class="map-grid-svg">
+          <defs>
+            <pattern id="grid-p" width="30" height="30" patternUnits="userSpaceOnUse">
+              <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#DEDCD4" stroke-width="0.75" stroke-dasharray="2 2" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid-p)" />
+          <ellipse cx="50%" cy="50%" rx="44%" ry="40%" fill="none" stroke="#8A918D" stroke-width="1" stroke-dasharray="5 5" opacity="0.3" />
+        </svg>
+
+        ${pins.map(loc => {
+          const c = getActivityColor(loc.activity);
+          const isSelected = (loc.id === selectedLocId);
+          const isCriticalOrHigh = (loc.activity === 'Critical' || loc.activity === 'High');
+          const size = Math.max(22, Math.min(38, loc.complaints * 0.75));
+
+          return `
+            <div class="map-pin ${isSelected ? 'selected' : ''}" style="left: ${loc.x}%; top: ${loc.y}%;" onclick="selectMapPin('${loc.id}', '${escapeHtml(loc.name)}')" title="${loc.name}: ${loc.complaints} complaints">
+              <div class="map-pin-circle" style="width: ${size}px; height: ${size}px; border-color: ${c}; background: ${c}22; ${isSelected ? `box-shadow: 0 0 0 3px ${c};` : ''}; position: relative;">
+                ${isCriticalOrHigh ? `<div class="radar-beacon" style="color: ${c};"></div>` : ''}
+                <div class="map-pin-inner" style="width: ${size * 0.4}px; height: ${size * 0.4}px; background: ${c};"></div>
+              </div>
+              <div class="map-pin-label">${escapeHtml(loc.name)} (${loc.complaints})</div>
+            </div>
+          `;
+        }).join('')}
+
+        <div class="map-legend">
+          <div class="legend-item"><div class="legend-dot" style="background: var(--critical);"></div><span class="legend-text">Critical</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background: var(--high);"></div><span class="legend-text">High</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background: var(--medium);"></div><span class="legend-text">Medium</span></div>
+        </div>
+      `;
+
+      const loc = mapLocations.find(l => l.id === selectedLocId) || mapLocations[0];
+      const ac = getActivityColor(loc.activity);
+      const inc = Math.round(((loc.complaints - loc.baseline) / loc.baseline) * 100);
+
+      document.getElementById('map-info-box').innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-size: 13px; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 6px;">
+              <span>${escapeHtml(loc.name)}</span>
+              ${renderActivityBadge(loc.activity)}
+            </div>
+            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">Primary driver: ${escapeHtml(loc.category)}</div>
+          </div>
+          <div style="text-align: right;">
+            <div class="mono" style="font-size: 20px; font-weight: 800; color: var(--text-primary); line-height: 1;">${loc.complaints}</div>
+            <div style="font-size: 10px; color: var(--text-muted); text-transform: uppercase;">Incidents</div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); font-size: 11px;">
+          <span style="color: var(--text-secondary);">Historical baseline: <strong class="mono">${loc.baseline}</strong> (${inc >= 0 ? `+${inc}% surge` : `${inc}%`})</span>
+          <button class="btn-secondary" style="font-size: 10px; padding: 3px 8px;" onclick="window.location.href='admin-explorer.html?loc=${encodeURIComponent(loc.name)}'">
+            Inspect Ward →
+          </button>
+        </div>
+      `;
+    }
+
+    function selectMapPin(id, name) {
+      selectedLocId = id;
+      selectedLocationFilter = name;
+      renderMap();
+      renderRecentIncidents();
+    }
+
+    renderMap();
+
+    // ── Interactive Recent Incidents Table ──────────────────────
+    function filterTableByCategory(cat) {
+      if (selectedCategoryFilter === cat) {
+        selectedCategoryFilter = null;
+      } else {
+        selectedCategoryFilter = cat;
+      }
+      renderCategoryBars();
+      renderRecentIncidents();
+    }
+
+    function clearTableFilter() {
+      selectedCategoryFilter = null;
+      selectedLocationFilter = null;
+      renderCategoryBars();
+      renderRecentIncidents();
+    }
+
+    function renderRecentIncidents() {
+      let filtered = [...complaints];
+      if (selectedCategoryFilter) {
+        filtered = filtered.filter(c => c.category === selectedCategoryFilter);
+      }
+      if (selectedLocationFilter) {
+        filtered = filtered.filter(c => c.location === selectedLocationFilter);
+      }
+
+      const subtitle = document.getElementById('table-filter-subtitle');
+      const clearBtn = document.getElementById('clear-table-filter-btn');
+
+      if (selectedCategoryFilter || selectedLocationFilter) {
+        subtitle.textContent = `Filtered by: ${[selectedCategoryFilter, selectedLocationFilter].filter(Boolean).join(' • ')}`;
+        clearBtn.classList.remove('hidden');
+      } else {
+        subtitle.textContent = 'Showing latest streamed tickets';
+        clearBtn.classList.add('hidden');
+      }
+
+      const paged = filtered.slice(0, 7);
+      const tbody = document.getElementById('recent-incidents-tbody');
+
+      if (paged.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 24px; color: var(--text-muted);">No complaints match the active filter.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = paged.map(c => `
+        <tr onclick="openIncidentDrawer('${c.id}')" title="Click to inspect ${c.id}">
+          <td class="mono" style="font-weight: 600; color: var(--accent2);">${escapeHtml(c.id)}</td>
+          <td style="font-weight: 500;">${escapeHtml(c.category)}</td>
+          <td style="color: var(--text-secondary);">${escapeHtml(c.location)}</td>
+          <td class="mono" style="font-size: 11px; color: var(--text-muted);">${escapeHtml(c.timestamp)}</td>
+          <td>${renderStatusBadge(c.status)}</td>
+        </tr>
+      `).join('');
+    }
+
+    renderRecentIncidents();
+
+    // ── Emerging Issues Cards ──────────────────────────────────
+    document.getElementById('cmd-issues-list').innerHTML = emergingIssues.map(issue => {
+      const ac = getActivityColor(issue.activity);
+      const ab = getActivityBg(issue.activity);
+      const ic = issue.increasePercent >= 300 ? '#A9473F' : (issue.increasePercent >= 100 ? '#C36B4B' : '#B8873B');
+      const whyText = issue.increasePercent >= 300
+        ? `${issue.complaints} complaints recorded — ${issue.increasePercent}% above historical baseline (${issue.baseline}). High-similarity cluster of ${issue.similarComplaints} tickets indicates a single breakdown.`
+        : `${issue.complaints} complaints recorded — ${issue.increasePercent}% above baseline (${issue.baseline}). Cluster of ${issue.similarComplaints} complaints concentrated between ${issue.timeConcentration}.`;
+
+      return `
+        <div class="issue-card" style="border-left-color: ${ac};">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+              <span style="font-size: 15px; font-weight: 700; color: var(--text-primary);">${escapeHtml(issue.category)}</span>
+              <span style="font-size: 12px; color: var(--text-muted);">•</span>
+              <span style="font-size: 13px; color: var(--text-secondary); font-weight: 500;">📍 ${escapeHtml(issue.location)}</span>
+              ${renderActivityBadge(issue.activity)}
+              ${renderStatusBadge(issue.status)}
+              <span class="mono" style="font-size: 10px; color: var(--text-muted); margin-left: auto;">Detected ${escapeHtml(issue.detectedAt)}</span>
+            </div>
+
+            <div class="issue-card-stats">
+              <div class="issue-stat">
+                <div class="issue-stat-label">Complaints</div>
+                <div class="issue-stat-val">${issue.complaints}</div>
+              </div>
+              <div class="issue-stat">
+                <div class="issue-stat-label">Baseline</div>
+                <div class="issue-stat-val" style="color: var(--text-muted);">${issue.baseline}</div>
+              </div>
+              <div class="issue-stat">
+                <div class="issue-stat-label">Increase</div>
+                <div class="issue-stat-val" style="color: ${ic};">+${issue.increasePercent}%</div>
+              </div>
+              <div class="issue-stat issue-stat-sep">
+                <div class="issue-stat-label">Cluster Size</div>
+                <div class="issue-stat-val">${issue.similarComplaints}</div>
+              </div>
+              <div class="issue-stat">
+                <div class="issue-stat-label">Time Peak</div>
+                <div class="mono" style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-top: 4px;">${escapeHtml(issue.timeConcentration)}</div>
+              </div>
+            </div>
+
+            <div class="why-flagged" style="background: ${ab}; border: 1px solid rgba(0,0,0,0.04);">
+              <strong style="color: ${ac};">Why flagged: </strong>
+              <span>${escapeHtml(whyText)}</span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 6px; align-items: flex-end;">
+            <button class="btn-dark" onclick="openEvidencePanel('${issue.id}')">
+              <span>View evidence</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+            <a href="admin-explorer.html?cat=${encodeURIComponent(issue.category)}&loc=${encodeURIComponent(issue.location)}" class="btn-secondary" style="font-size: 11px; padding: 5px 10px; text-decoration: none;">
+              Explore complaints
+            </a>
+          </div>
+        </div>
+      `;
+    }).join('');
+  </script>
+</body>
+</html>
